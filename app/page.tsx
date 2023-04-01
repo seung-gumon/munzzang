@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import styles from './page.module.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
-    <div>Hello World</div>
+    <div>
+      <h1>Hello World</h1>
+      <span>김승석</span>
+    </div>
   );
 }

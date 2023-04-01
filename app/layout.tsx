@@ -1,13 +1,19 @@
-import { Nunito } from 'next/font/google';
+import React from 'react';
+import { Noto_Sans_KR } from 'next/font/google';
 
 import './globals.css';
+import Navbar from '@/app/components/navbar/Navbar';
+import { Metadata } from 'next';
+import Image from 'next/image';
 
-export const metadata = {
-  title: '문짱',
+export const metadata : Metadata = {
+  title: 'MunZzang',
   description: '문제를 대신 풀어주는 개쩌는 AI',
+  manifest: '/manifest.json',
 };
 
-const font = Nunito({
+const font = Noto_Sans_KR({
+  weight: ['100', '300', '400', '500', '700', '900'],
   subsets: ['latin'],
 });
 
@@ -19,8 +25,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={font.className}>
-      {children}
+        <Navbar />
+        {children}
       </body>
     </html>
-  )
+  );
 }
