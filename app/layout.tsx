@@ -1,10 +1,8 @@
 import React from 'react';
 import { Noto_Sans_KR } from 'next/font/google';
-
+import { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/app/components/navbar/Navbar';
-import { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata : Metadata = {
   title: 'MunZzang',

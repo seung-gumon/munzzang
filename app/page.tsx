@@ -3,9 +3,6 @@ import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <div>
-      <h1>Hello World</h1>
-      <span>김승석</span>
-    </div>
+    <div />
   );
 }
