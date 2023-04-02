@@ -4,6 +4,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import Avatar from '@/app/components/Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from '@/app/components/navbar/MenuItem';
+import { Transition } from '@headlessui/react';
 
 function UserMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,10 +38,16 @@ function UserMenu() {
           </div>
         </button>
       </div>
-      {
-        isOpen && (
-        <div
-          className="
+      <Transition
+        show={isOpen}
+        as="div"
+        enter="transition-opacity duration-100"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+        className="
             absolute
             rounded-xl
             shadow-md
@@ -49,17 +56,17 @@ function UserMenu() {
             bg-white
             overflow-hidden
             right-0
-            top-12
+            md:top-[43px]
+            top-[55px]
+            border-[1px]
             text-sm
           "
-        >
-          <div className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="로그인" />
-            <MenuItem onClick={() => {}} label="회원가입" />
-          </div>
-        </div>
-        )
-      }
+      >
+        <ul className="flex flex-col cursor-pointer">
+          <MenuItem onClick={() => {}} label="로그인" />
+          <MenuItem onClick={() => {}} label="회원가입" />
+        </ul>
+      </Transition>
     </div>
   );
 }

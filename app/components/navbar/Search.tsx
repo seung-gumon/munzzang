@@ -14,7 +14,7 @@ function Search() {
         </li>
         <li className="text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3">
           <div className="hidden sm:block">Add Guests</div>
-          <div className="p-2 bg-zinc-500 rounded-full text-white"><BiSearch size={18} /></div>
+          <div className="p-2 bg-indigo-500 rounded-full text-white"><BiSearch size={18} /></div>
         </li>
       </ul>
     </div>

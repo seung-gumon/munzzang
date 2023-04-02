@@ -3,6 +3,8 @@ import { Noto_Sans_KR } from 'next/font/google';
 import { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/app/components/navbar/Navbar';
+import ClientOnly from '@/app/components/ClientOnly';
+import Modal from '@/app/components/modals/Modal';
 
 export const metadata : Metadata = {
   title: 'MunZzang',
@@ -23,8 +25,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={font.className}>
-        <Navbar />
-        {children}
+        <ClientOnly>
+          <Navbar />
+          <Modal isOpen />
+          {children}
+        </ClientOnly>
       </body>
     </html>
   );

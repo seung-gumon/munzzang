@@ -11,9 +11,9 @@ const MenuItem: FC<MenuItemProps> = ({
   onClick,
   label,
 }) => (
-  <div
-    onClick={onClick}
+  <li
     className="
+        text-left
         px-4
         py-3
         hover:bg-neutral-100
@@ -21,8 +21,14 @@ const MenuItem: FC<MenuItemProps> = ({
         font-semibold
       "
   >
-    {label}
-  </div>
+    <button
+      type="button"
+      onClick={onClick}
+    >
+      {label}
+    </button>
+  </li>
+
 );
 
 export default MenuItem;
