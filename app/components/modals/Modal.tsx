@@ -4,6 +4,7 @@ import {
   FC, ReactElement, useCallback, useEffect, useState, useRef,
 } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import Button from '@/app/components/Button';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -15,7 +16,7 @@ interface ModalProps {
   actionLabel : string;
   disabled ?: boolean;
   secondaryAction ?: () => void;
-  secondaryLabel ?: string;
+  secondaryActionLabel ?: string;
 }
 
 const Modal: FC<ModalProps> = ({
@@ -28,7 +29,7 @@ const Modal: FC<ModalProps> = ({
   actionLabel,
   disabled,
   secondaryAction,
-  secondaryLabel,
+  secondaryActionLabel,
 }) => {
   const [isShowModal, setIsShowModal] = useState(isOpen);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
@@ -67,19 +68,7 @@ const Modal: FC<ModalProps> = ({
   }
 
   return (
-    <div className="
-    justify-center
-    items-center
-    flex
-    overflow-x-hidden
-    overflow-y-auto
-    fixed
-    inset-0
-    z-50
-    outline-none
-    focus:outline-none
-    bg-neutral-800/70"
-    >
+    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
       <section className="
         relative
         w-full
@@ -104,7 +93,7 @@ const Modal: FC<ModalProps> = ({
         >
           <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*  HEADER */}
-            <header
+            <section
               className="
                 flex
                 items-center
@@ -125,7 +114,28 @@ const Modal: FC<ModalProps> = ({
               <div className="text-lg font-semibold">
                 {title}
               </div>
-            </header>
+            </section>
+            <section className="relative p-6 flex-auto">
+              {body}
+            </section>
+            <section className="flex flex-col gap-2 p-6">
+              <article className="flex flex-row items-center gap-4 w-full">
+                {secondaryActionLabel && secondaryAction
+                  && (
+                  <Button
+                    disabled={disabled}
+                    label={secondaryActionLabel}
+                    onClick={handleSecondaryAction}
+                  />
+                  )}
+
+                <Button
+                  disabled={disabled}
+                  label={actionLabel}
+                  onClick={handleSubmit}
+                />
+              </article>
+            </section>
           </div>
         </article>
         {/* CONTENT */}

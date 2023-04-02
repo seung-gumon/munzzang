@@ -5,8 +5,10 @@ import Avatar from '@/app/components/Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from '@/app/components/navbar/MenuItem';
 import { Transition } from '@headlessui/react';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 function UserMenu() {
+  const { onOpen } = useRegisterModal();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
@@ -64,7 +66,7 @@ function UserMenu() {
       >
         <ul className="flex flex-col cursor-pointer">
           <MenuItem onClick={() => {}} label="로그인" />
-          <MenuItem onClick={() => {}} label="회원가입" />
+          <MenuItem onClick={onOpen} label="회원가입" />
         </ul>
       </Transition>
     </div>

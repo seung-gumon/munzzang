@@ -16,7 +16,7 @@ const MenuItem: FC<MenuItemProps> = ({
         text-left
         px-4
         py-3
-        hover:bg-neutral-100
+        hover:bg-neutral-200
         transition
         font-semibold
       "

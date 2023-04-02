@@ -9,9 +9,9 @@ function Logo() {
   return (
     <Image
       className="hidden md:block cursor-pointer"
-      width={100}
-      height={100}
-      src="/images/logo.png"
+      width={120}
+      height={120}
+      src="/images/logo-small.png"
       alt="Munzzang Logo"
     />
   );
