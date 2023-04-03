@@ -12,6 +12,9 @@ import {
 } from 'react-hook-form';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import Modal from '@/app/components/modals/Modal';
+import Button from '@/app/components/Button';
+import Input from '@/app/components/inputs/Input';
+import Heading from '@/app/components/Heading';
 
 function RegisterModal() {
   const registerModal = useRegisterModal();
@@ -45,14 +48,96 @@ function RegisterModal() {
     }
   }, []);
 
+  const onToggle = useCallback(() => {
+    registerModal.onClose();
+    // loginModal.onOpen();
+  }, [registerModal]);
+
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <Heading
+        title="환영합니다!"
+        subtitle="계정을 생성해주세요!"
+      />
+      <Input
+        id="email"
+        label="Email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="password"
+        label="Password"
+        type="password"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+    </div>
+  );
+
+  const footerContent = (
+    <div className="flex flex-col gap-4 mt-3">
+      <hr />
+      <Button
+        outline
+        label="구글 계정으로 로그인"
+        icon={FcGoogle}
+        onClick={() => console.log('Login with Google')}
+      />
+      <Button
+        outline
+        label="카카오 계정으로 로그인"
+        icon={AiFillGithub}
+        onClick={() => console.log('Login With KaKao')}
+      />
+      <div
+        className="
+          text-neutral-500
+          text-center
+          mt-4
+          font-light
+        "
+      >
+        <p>
+          이미 계정이 있으신가요 ?
+          <button
+            type="button"
+            onClick={onToggle}
+            className="
+              text-neutral-800
+              cursor-pointer
+              hover:underline
+            "
+          >
+            Log in
+          </button>
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <Modal
       disabled={isLoading}
       isOpen={registerModal.isOpen}
-      title="회원가입"
-      actionLabel="계속하기"
+      title="Register"
+      actionLabel="Continue"
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
+      body={bodyContent}
+      footer={footerContent}
     />
   );
 }
