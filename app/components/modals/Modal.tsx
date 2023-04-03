@@ -19,7 +19,7 @@ interface ModalProps {
   secondaryActionLabel ?: string;
 }
 
-const Modal: FC<ModalProps> = ({
+function Modal({
   isOpen,
   onClose,
   onSubmit,
@@ -30,7 +30,7 @@ const Modal: FC<ModalProps> = ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
-}) => {
+} : ModalProps) {
   const [isShowModal, setIsShowModal] = useState(isOpen);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -134,14 +134,15 @@ const Modal: FC<ModalProps> = ({
                   label={actionLabel}
                   onClick={handleSubmit}
                 />
+
               </article>
+              {/* Footer */}
+              {footer}
             </section>
           </div>
         </article>
-        {/* CONTENT */}
-
       </section>
     </div>
   );
-};
+}
 export default Modal;

@@ -1,7 +1,6 @@
 'use client';
 
 import axios from 'axios';
-import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'React-icons/fc';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { useCallback, useState } from 'react';
@@ -20,11 +19,10 @@ function RegisterModal() {
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(registerModal);
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: {
       errors,
     },
@@ -52,6 +50,11 @@ function RegisterModal() {
     registerModal.onClose();
     // loginModal.onOpen();
   }, [registerModal]);
+
+  const registerModalClose = useCallback(() => {
+    reset();
+    registerModal.onClose();
+  }, []);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -99,7 +102,7 @@ function RegisterModal() {
       <Button
         outline
         label="카카오 계정으로 로그인"
-        icon={AiFillGithub}
+        icon={RiKakaoTalkFill}
         onClick={() => console.log('Login With KaKao')}
       />
       <div
@@ -118,10 +121,12 @@ function RegisterModal() {
             className="
               text-neutral-800
               cursor-pointer
+              font-semibold
               hover:underline
+              ml-1
             "
           >
-            Log in
+            로그인
           </button>
         </p>
       </div>
@@ -133,8 +138,8 @@ function RegisterModal() {
       disabled={isLoading}
       isOpen={registerModal.isOpen}
       title="Register"
-      actionLabel="Continue"
-      onClose={registerModal.onClose}
+      actionLabel="계속하기"
+      onClose={registerModalClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
