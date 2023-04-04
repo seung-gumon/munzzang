@@ -129,11 +129,11 @@ function Modal({
                   />
                   )}
 
-                <Button
+                {/* <Button
                   disabled={disabled}
                   label={actionLabel}
                   onClick={handleSubmit}
-                />
+                /> */}
 
               </article>
               {/* Footer */}
