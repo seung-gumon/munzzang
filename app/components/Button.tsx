@@ -22,7 +22,7 @@ function Button({
   addClass,
   icon: Icon,
 } : Button) {
-  console.log('addclass :::', addClass);
+  console.log(addClass);
 
   return (
     <button
@@ -43,7 +43,7 @@ function Button({
       ${small ? 'text-sm' : 'text-md'}
       ${small ? 'font-light' : 'font-semibold'}
       ${small ? 'border-[1px]' : 'border-2'}
-      ${addClass && addClass}
+      ${addClass && 'bg-[#f9e000]'}
     `}
     >
       {Icon && (
