@@ -22,6 +22,8 @@ function Button({
   addClass,
   icon: Icon,
 } : Button) {
+  console.log('addclass :::', addClass);
+
   return (
     <button
       disabled={disabled}

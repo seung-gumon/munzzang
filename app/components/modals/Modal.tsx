@@ -1,10 +1,11 @@
 'use client';
 
 import {
-  FC, ReactElement, useCallback, useEffect, useState, useRef,
+  ReactElement, useCallback, useEffect, useState, useRef,
 } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import Button from '@/app/components/Button';
+import useLockedBody from '@/app/hooks/useLockedBody';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -33,6 +34,7 @@ function Modal({
 } : ModalProps) {
   const [isShowModal, setIsShowModal] = useState(isOpen);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
+  useLockedBody();
 
   useEffect(() => {
     setIsShowModal(isOpen);

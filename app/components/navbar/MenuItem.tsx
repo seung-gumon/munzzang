@@ -13,15 +13,12 @@ const MenuItem: FC<MenuItemProps> = ({
 }) => (
   <li
     className="
-        text-left
-        px-4
-        py-3
         hover:bg-neutral-200
-        transition
         font-semibold
       "
   >
     <button
+      className="w-full text-left text-left transition px-4 py-3"
       type="button"
       onClick={onClick}
     >

@@ -82,7 +82,7 @@ function RegisterModal() {
         label="카카오 계정으로 회원가입"
         icon={RiKakaoTalkFill}
         onClick={() => console.log('Login With KaKao')}
-        addClass="bg-[#F7E600]"
+        addClass="bg-[#FEE500] text-black"
       />
       <Button
         disabled={!isValid}
