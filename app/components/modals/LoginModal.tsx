@@ -14,9 +14,8 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import Modal from '@/app/components/modals/Modal';
 import Button from '@/app/components/Button';
 import Heading from '@/app/components/Heading';
-import TermsOfUse from '../auth/TermsOfUse';
 
-function RegisterModal() {
+function LoginModal() {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +48,7 @@ function RegisterModal() {
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
-    loginModal.onOpen();
+    // loginModal.onOpen();
   }, [registerModal]);
 
   const registerModalClose = useCallback(() => {
@@ -60,28 +59,12 @@ function RegisterModal() {
   const bodyContent = (
     <form className="flex flex-col gap-4">
       <Heading
-        title="환영합니다!"
-        subtitle="계정을 생성해주세요!"
+        title="문짱에 오신 것을 환영합니다."
       />
 
-      <section className="flex flex-col gap-y-2">
-        <TermsOfUse
-          id="private"
-          label="개인정보 수집 및 이용 동의"
-          labelDetail="개인정보 수집 및 이용 동의"
-          register={register}
-        />
-        <TermsOfUse
-          id="termsOfUse"
-          label="이용 약관"
-          labelDetail="이용 약관"
-          register={register}
-        />
-      </section>
       <Button
-        disabled={!isValid}
         outline
-        label="카카오 계정으로 회원가입"
+        label="카카오 계정으로 로그인"
         icon={RiKakaoTalkFill}
         onClick={() => console.log('Login With KaKao')}
         addClass="bg-yellow-300 text-black"
@@ -130,10 +113,10 @@ function RegisterModal() {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="회원 가입"
-      actionLabel="계속하기"
-      onClose={registerModalClose}
+      isOpen={loginModal.isOpen}
+      title="로그인"
+      actionLabel="로그인"
+      onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -141,4 +124,4 @@ function RegisterModal() {
   );
 }
 
-export default RegisterModal;
+export default LoginModal;

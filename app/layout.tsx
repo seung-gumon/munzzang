@@ -5,6 +5,8 @@ import './globals.css';
 import Navbar from '@/app/components/navbar/Navbar';
 import ClientOnly from '@/app/components/ClientOnly';
 import RegisterModal from '@/app/components/modals/RegisterModal';
+import LoginModal from '@/app/components/modals/LoginModal';
+import ToasterProvider from '@/app/providers/ToasterProvider';
 
 export const metadata : Metadata = {
   title: 'MunZzang',
@@ -58,7 +60,9 @@ export default function RootLayout({
     <html lang="ko">
       <body id="body" className={font.className}>
         <ClientOnly>
+          <ToasterProvider />
           <Navbar />
+          <LoginModal />
           <RegisterModal />
           {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}
           {children}
