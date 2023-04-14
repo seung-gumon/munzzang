@@ -3,7 +3,7 @@
 import { IconType } from 'react-icons';
 import React from 'react';
 
-interface Button {
+interface IButton {
   label: string;
   onClick :(e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled ?: boolean;
@@ -21,11 +21,10 @@ function Button({
   small,
   addClass,
   icon: Icon,
-} : Button) {
-  console.log(addClass);
-
+} : IButton) {
   return (
     <button
+      onClick={onClick}
       disabled={disabled}
       type="button"
       className={`

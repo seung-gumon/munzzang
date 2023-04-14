@@ -7,6 +7,7 @@ import ClientOnly from '@/app/components/ClientOnly';
 import RegisterModal from '@/app/components/modals/RegisterModal';
 import LoginModal from '@/app/components/modals/LoginModal';
 import ToasterProvider from '@/app/providers/ToasterProvider';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export const metadata : Metadata = {
   title: 'MunZzang',
@@ -51,11 +52,14 @@ const font = Noto_Sans_KR({
   subsets: ['latin'],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const currentUser = await getCurrentUser();
+  console.log('currentUser ::: ', currentUser);
+
   return (
     <html lang="ko">
       <body id="body" className={font.className}>

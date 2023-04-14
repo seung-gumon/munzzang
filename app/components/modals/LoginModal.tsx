@@ -11,8 +11,9 @@ import {
 } from 'react-hook-form';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { signIn } from 'next-auth/react';
 import Modal from '@/app/components/modals/Modal';
-import Button from '@/app/components/Button';
+import Button from '@/app/components/IButton';
 import Heading from '@/app/components/Heading';
 
 function LoginModal() {
@@ -66,7 +67,7 @@ function LoginModal() {
         outline
         label="카카오 계정으로 로그인"
         icon={RiKakaoTalkFill}
-        onClick={() => console.log('Login With KaKao')}
+        onClick={() => signIn('kakao')}
         addClass="bg-yellow-300 text-black"
       />
       <Button
@@ -74,7 +75,7 @@ function LoginModal() {
         outline
         label="구글 계정으로 회원가입"
         icon={FcGoogle}
-        onClick={() => console.log('Login with Google')}
+        onClick={() => signIn('google')}
       />
     </form>
   );

@@ -7,11 +7,12 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["tailwind.config.js"],
+  "ignorePatterns": ["tailwind.config.js","next-env.d.ts","next.config.js",".eslintrc.js",".prettierrc.js",".babelrc.js",".babelrc",".prettierrc",".eslintrc",".prettierrc.json"],
   "rules": {
     "react/react-in-jsx-scope" : "off",
     "import/no-extraneous-dependencies" : "off",
-    "react/jsx-props-no-spreading" : "off"
+    "react/jsx-props-no-spreading" : "off",
+    "react/require-default-props" : "off"
   }
 }
 

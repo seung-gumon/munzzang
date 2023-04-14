@@ -4,7 +4,7 @@ import {
   ReactElement, useCallback, useEffect, useState, useRef,
 } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import Button from '@/app/components/Button';
+import Button from '@/app/components/IButton';
 import useLockedBody from '@/app/hooks/useLockedBody';
 
 interface ModalProps {
