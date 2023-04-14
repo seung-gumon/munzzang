@@ -108,7 +108,7 @@ function Modal({
             >
               <button
                 type="button"
-                className="p-1 border-0 hover:opacity-70 transition absolute left-9"
+                className="border-0 hover:opacity-70 transition absolute left-9 p-3 rounded-full hover:bg-neutral-100 text-neutral-500 focus:outline-none"
                 onClick={handleClose}
               >
                 <IoMdClose size={18} />
