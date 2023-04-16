@@ -3,6 +3,7 @@
 import {
   useEffect, useState, PropsWithChildren,
 } from 'react';
+import { SessionProvider } from 'next-auth/react';
 
 function ClientOnly({ children }: PropsWithChildren) {
   const [hasMounted, setHasMounted] = useState(false);
@@ -15,7 +16,7 @@ function ClientOnly({ children }: PropsWithChildren) {
     return null;
   }
 
-  return <>{children}</>;
+  return <SessionProvider>{children}</SessionProvider>;
 }
 
 export default ClientOnly;

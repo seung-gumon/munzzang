@@ -5,14 +5,13 @@ import Logo from '@/app/components/navbar/Logo';
 import Search from '@/app/components/navbar/Search';
 import UserMenu from '@/app/components/navbar/UserMenu';
 import { CurrentUser } from '@/app/model/CurrentUser';
+import { useSession } from 'next-auth/react';
 
 interface NavbarProps {
   currentUser ?: CurrentUser | null;
 }
 
 function Navbar({ currentUser } : NavbarProps) {
-  console.log(currentUser);
-
   return (
     <header className="fixed w-full bg-white z-10 shadow-sm">
       <div className="

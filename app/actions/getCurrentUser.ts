@@ -9,7 +9,6 @@ export async function getSession() {
 export default async function getCurrentUser() : Promise<CurrentUser | null> {
   try {
     const session = await getSession();
-    console.log('GetSession :::', session);
     if (!session?.user) return null;
 
     const { image, name, email } = session.user;
