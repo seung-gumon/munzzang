@@ -7,8 +7,14 @@ import MenuItem from '@/app/components/navbar/MenuItem';
 import { Transition } from '@headlessui/react';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { CurrentUser } from '@/app/model/CurrentUser';
+import { signOut } from 'next-auth/react';
 
-function UserMenu() {
+interface UserMenuProps {
+  currentUser ?: CurrentUser | null;
+}
+
+function UserMenu({ currentUser } : UserMenuProps) {
   const { onOpen } = useRegisterModal();
   const { onOpen: onOpenLogin } = useLoginModal();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -38,7 +44,7 @@ function UserMenu() {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </button>
       </div>
@@ -67,8 +73,21 @@ function UserMenu() {
           "
       >
         <ul className="flex flex-col cursor-pointer">
-          <MenuItem onClick={onOpenLogin} label="로그인" />
-          <MenuItem onClick={onOpen} label="회원가입" />
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label="내정보" />
+              <MenuItem onClick={() => {}} label="내 질문 내역" />
+              <hr />
+              <MenuItem onClick={signOut} label="로그아웃" />
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={onOpenLogin} label="로그인" />
+              <MenuItem onClick={onOpen} label="회원가입" />
+            </>
+
+          )}
+
         </ul>
       </Transition>
     </div>

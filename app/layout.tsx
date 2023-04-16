@@ -58,14 +58,13 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser();
-  console.log('currentUser ::: ', currentUser);
 
   return (
     <html lang="ko">
       <body id="body" className={font.className}>
         <ClientOnly>
           <ToasterProvider />
-          <Navbar />
+          <Navbar currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
           {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}

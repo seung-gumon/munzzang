@@ -1,19 +1,24 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { CurrentUser } from '@/app/model/CurrentUser';
 
 export async function getSession() {
   return getServerSession(authOptions);
 }
 
-export default async function getCurrentUser() {
+export default async function getCurrentUser() : Promise<CurrentUser | null> {
   try {
     const session = await getSession();
-    console.log(session);
-    if (!session?.user?.email) {
-      return null;
-    }
-    console.log('RAON RAON ::::', session);
-    return session.user;
+    console.log('GetSession :::', session);
+    if (!session?.user) return null;
+
+    const { image, name, email } = session.user;
+
+    return {
+      image: image || '',
+      name: name || '',
+      email: email || undefined,
+    };
   } catch (e) {
     return null;
   }

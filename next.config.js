@@ -6,6 +6,7 @@ const nextConfig = {
   images : {
     domains: [
         'lh3.googleusercontent.com',
+        "k.kakaocdn.net",
     ],
   }
 }
