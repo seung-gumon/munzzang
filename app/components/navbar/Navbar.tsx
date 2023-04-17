@@ -4,13 +4,8 @@ import Container from '@/app/components/Container';
 import Logo from '@/app/components/navbar/Logo';
 import Search from '@/app/components/navbar/Search';
 import UserMenu from '@/app/components/navbar/UserMenu';
-import { CurrentUser } from '@/app/model/CurrentUser';
 
-interface NavbarProps {
-  currentUser ?: CurrentUser | null;
-}
-
-function Navbar({ currentUser } : NavbarProps) {
+function Navbar() {
   return (
     <header className="fixed w-full bg-white z-10 shadow-sm">
       <div className="
@@ -22,7 +17,7 @@ function Navbar({ currentUser } : NavbarProps) {
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo />
             <Search />
-            <UserMenu currentUser={currentUser} />
+            <UserMenu />
           </div>
         </Container>
       </div>

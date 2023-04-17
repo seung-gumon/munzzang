@@ -7,19 +7,30 @@ import MenuItem from '@/app/components/navbar/MenuItem';
 import { Transition } from '@headlessui/react';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { CurrentUser } from '@/app/model/CurrentUser';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import { SignOutParams } from 'next-auth/src/react/types';
 
-interface UserMenuProps {
-  currentUser ?: CurrentUser | null;
-}
-
-function UserMenu({ currentUser } : UserMenuProps) {
+function UserMenu() {
   const { onOpen } = useRegisterModal();
   const { onOpen: onOpenLogin } = useLoginModal();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
+  const { data: session, status } = useSession();
+  console.log(session);
+
+  async function handleLogout() {
+    // Call Kakao logout API
+    const kakaoLogoutRes = await fetch('/api/auth/kakao-logout');
+
+    if (kakaoLogoutRes.ok) {
+      // Call NextAuth signOut function
+      const options: SignOutParams = { callbackUrl: '/' };
+      await signOut(options);
+    } else {
+      console.error('Failed to logout from Kakao');
+    }
+  }
 
   return (
     <div className="relative">
@@ -44,7 +55,7 @@ function UserMenu({ currentUser } : UserMenuProps) {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar src={currentUser?.image} />
+            <Avatar src="" />
           </div>
         </button>
       </div>
@@ -73,12 +84,12 @@ function UserMenu({ currentUser } : UserMenuProps) {
           "
       >
         <ul className="flex flex-col cursor-pointer">
-          {currentUser ? (
+          {status === 'authenticated' ? (
             <>
               <MenuItem onClick={() => {}} label="내정보" />
               <MenuItem onClick={() => {}} label="내 질문 내역" />
               <hr />
-              <MenuItem onClick={signOut} label="로그아웃" />
+              <MenuItem onClick={() => signOut()} label="로그아웃" />
             </>
           ) : (
             <>
