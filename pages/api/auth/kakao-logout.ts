@@ -8,16 +8,11 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const session = (await getSession({ req })) as Session | null;
-  console.log('Session :::', session);
+  const logOutURL = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.KAKAO_ID}&logout_redirect_uri=http://localhost:3000/`;
   if (session) {
-    const { user: { accessToken } } = session;
-
-    const kakaoLogoutRes = await fetch('https://kapi.kakao.com/v1/user/logout', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+    const kakaoLogoutRes = await fetch(logOutURL, {
+      method: 'GET',
     });
-
     if (kakaoLogoutRes.ok) {
       res.status(200).json({ success: true });
     } else {

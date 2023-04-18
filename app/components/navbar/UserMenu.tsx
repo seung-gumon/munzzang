@@ -8,7 +8,7 @@ import { Transition } from '@headlessui/react';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut, useSession } from 'next-auth/react';
-import { SignOutParams } from 'next-auth/src/react/types';
+import { toast } from 'react-hot-toast';
 
 function UserMenu() {
   const { onOpen } = useRegisterModal();
@@ -17,20 +17,6 @@ function UserMenu() {
 
   const toggleOpen = useCallback(() => setIsOpen((prev) => !prev), []);
   const { data: session, status } = useSession();
-  console.log(session);
-
-  async function handleLogout() {
-    // Call Kakao logout API
-    const kakaoLogoutRes = await fetch('/api/auth/kakao-logout');
-
-    if (kakaoLogoutRes.ok) {
-      // Call NextAuth signOut function
-      const options: SignOutParams = { callbackUrl: '/' };
-      await signOut(options);
-    } else {
-      console.error('Failed to logout from Kakao');
-    }
-  }
 
   return (
     <div className="relative">
@@ -55,7 +41,7 @@ function UserMenu() {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar src="" />
+            <Avatar src={session?.user.image} />
           </div>
         </button>
       </div>
@@ -89,7 +75,7 @@ function UserMenu() {
               <MenuItem onClick={() => {}} label="내정보" />
               <MenuItem onClick={() => {}} label="내 질문 내역" />
               <hr />
-              <MenuItem onClick={() => signOut()} label="로그아웃" />
+              <MenuItem onClick={signOut} label="로그아웃" />
             </>
           ) : (
             <>

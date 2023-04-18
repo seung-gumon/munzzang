@@ -13,7 +13,7 @@ function Heading({
 } : HeadingProps) {
   return (
     <div className={center ? 'text-center' : 'text-start'}>
-      <div className="text-xl font-semibold">
+      <div className="text-2xl font-semibold">
         {title}
       </div>
       {subtitle && (

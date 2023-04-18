@@ -48,13 +48,8 @@ function LoginModal() {
   }, []);
 
   const onToggle = useCallback(() => {
-    registerModal.onClose();
-    // loginModal.onOpen();
-  }, [registerModal]);
-
-  const registerModalClose = useCallback(() => {
-    reset();
-    registerModal.onClose();
+    loginModal.onClose();
+    registerModal.onOpen();
   }, []);
 
   const bodyContent = (
@@ -92,7 +87,7 @@ function LoginModal() {
         "
       >
         <p>
-          이미 계정이 있으신가요 ?
+          계정이 없으신가요 ?
           <button
             type="button"
             onClick={onToggle}
@@ -104,7 +99,7 @@ function LoginModal() {
               ml-1
             "
           >
-            로그인
+            회원가입
           </button>
         </p>
       </div>
