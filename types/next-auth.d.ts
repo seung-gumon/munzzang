@@ -19,7 +19,7 @@ declare module 'next-auth' {
   }
 
   interface Session {
-    provider?: string;
+    provider?: string; /** Google , KaKao */
     accessToken?: accessToken;
     user: {
       id : number;

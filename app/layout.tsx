@@ -7,10 +7,11 @@ import ClientOnly from '@/app/components/ClientOnly';
 import RegisterModal from '@/app/components/modals/RegisterModal';
 import LoginModal from '@/app/components/modals/LoginModal';
 import ToasterProvider from '@/app/providers/ToasterProvider';
+import Script from 'next/script';
 
 export const metadata : Metadata = {
-  title: 'MunZzang',
-  description: '문제를 대신 풀어주는 개쩌는 AI',
+  title: 'Pets And Mats',
+  description: '팻트와 매트 !',
   manifest: '/manifest.json',
   robots: {
     index: false,
@@ -59,13 +60,14 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body id="body" className={font.className}>
+
         <ClientOnly>
           <ToasterProvider />
           <Navbar />
           <LoginModal />
           <RegisterModal />
-          {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}
           {children}
+          {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}
         </ClientOnly>
       </body>
     </html>

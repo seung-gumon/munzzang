@@ -60,7 +60,7 @@ function LoginModal() {
 
       <Button
         outline
-        label="카카오 계정으로 로그인"
+        label="카카오 로그인"
         icon={RiKakaoTalkFill}
         onClick={() => signIn('kakao')}
         addClass="bg-yellow-300 text-black"
@@ -68,7 +68,7 @@ function LoginModal() {
       <Button
         disabled={!isValid}
         outline
-        label="구글 계정으로 회원가입"
+        label="구글 로그인"
         icon={FcGoogle}
         onClick={() => signIn('google')}
       />
