@@ -12,7 +12,7 @@ function Map() {
       <Script
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fwhavib8pn"
       />
-      <div id="map" className="w-[400px] h-[400px]" />
+      <div id="map" className="w-[100%] h-[100%]" />
     </>
   );
 }
