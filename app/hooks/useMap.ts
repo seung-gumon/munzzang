@@ -24,7 +24,10 @@ function useMap() {
         setIsLoading(true);
         if (navigator.geolocation) {
           // eslint-disable-next-line max-len
-          const position = await new Promise<Position>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+          const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+
           setMyLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -46,6 +49,7 @@ function useMap() {
     if (myLocation !== null && typeof myLocation !== 'string') {
       const { latitude, longitude } = myLocation;
       const currentPosition = [latitude, longitude];
+
       mapRef.current = new naver.maps.Map('map', {
         center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
         zoomControl: true,
