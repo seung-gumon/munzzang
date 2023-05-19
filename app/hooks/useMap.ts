@@ -1,67 +1,53 @@
-import { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { useEffect, useRef } from 'react';
+import useGetClientLocation from '@/app/hooks/useGetClientLocation';
 
-type Location = {
-  latitude: number;
-  longitude: number;
-};
-
-const DEFAULT_LOCATION = { latitude: 37.4862618, longitude: 127.1222903 };
+// const MARKER_ICON = {
+//   url: 'PIN IMAGE',
+//   size: new naver.maps.Size(50, 52),
+//   origin: new naver.maps.Point(0, 0),
+//   anchor: new naver.maps.Point(25, 26),
+// };
 
 function useMap() {
-  const mapRef = useRef<HTMLDivElement | null>(null);
-  const [myLocation, setMyLocation] = useState<Location | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const mapRef = useRef<naver.maps.Map | null>(null);
+  const { isLoading, myLocation } = useGetClientLocation();
 
   useEffect(() => {
-    const handleGeolocationError = () => {
-      toast.error('현재 위치를 알 수 없어 기본 위치로 지정합니다.');
-      setMyLocation(DEFAULT_LOCATION);
-    };
-
-    const fetchCurrentLocation = async () => {
-      try {
-        setIsLoading(true);
-        if (navigator.geolocation) {
-          // eslint-disable-next-line max-len
-          const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
-          });
-
-          setMyLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        } else {
-          handleGeolocationError();
-        }
-      } catch (error) {
-        console.error('Exception:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCurrentLocation();
-  }, []);
-
-  useEffect(() => {
-    if (myLocation !== null && typeof myLocation !== 'string') {
+    if (myLocation !== null) {
       const { latitude, longitude } = myLocation;
-      const currentPosition = [latitude, longitude];
 
       mapRef.current = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
+        center: new naver.maps.LatLng(latitude, longitude),
         zoomControl: true,
       });
     }
   }, [myLocation]);
 
-  console.log('isLoading:', isLoading);
+  useEffect(() => {
+    if (myLocation) {
+      const currentPosition = [myLocation.latitude, myLocation.longitude];
+
+      const map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
+        zoomControl: true,
+        zoomControlOptions: { // 줌 컨트롤의 옵션
+          position: naver.maps.Position.TOP_RIGHT,
+        },
+      });
+
+      new naver.maps.Marker({
+        position: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
+        map,
+        // 원하는 이미지로 마커 커스텀
+        // icon: MARKER_ICON,
+      });
+    }
+  }, [myLocation]);
 
   return {
     myLocation,
     isLoading,
+    mapRef,
   };
 }
 

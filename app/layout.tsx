@@ -60,7 +60,9 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body id="body" className={font.className}>
-
+        <Script
+          src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fwhavib8pn"
+        />
         <ClientOnly>
           <ToasterProvider />
           <Navbar />

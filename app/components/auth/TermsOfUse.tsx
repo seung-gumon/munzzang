@@ -1,10 +1,10 @@
-import { FieldErrors, FieldValue, UseFormRegister } from 'react-hook-form';
+import { FieldValue, UseFormRegister } from 'react-hook-form';
 
 interface TermsOfUseProps {
   id:string
   label : string
   labelDetail : string
-  register : UseFormRegister<FieldValue>,
+  register : UseFormRegister<FieldValue<any>>,
 }
 
 function TermsOfUse({

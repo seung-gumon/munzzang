@@ -22,9 +22,7 @@ function LoginModal() {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    register,
     handleSubmit,
-    reset,
     formState: {
       isValid,
     },
