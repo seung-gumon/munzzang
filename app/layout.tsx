@@ -8,6 +8,7 @@ import RegisterModal from '@/app/components/modals/RegisterModal';
 import LoginModal from '@/app/components/modals/LoginModal';
 import ToasterProvider from '@/app/providers/ToasterProvider';
 import Script from 'next/script';
+import MapNavs from '@/app/components/navbar/MapNavs';
 
 export const metadata : Metadata = {
   title: 'Pets And Mats',
@@ -65,9 +66,6 @@ export default async function RootLayout({
         />
         <ClientOnly>
           <ToasterProvider />
-          <Navbar />
-          <LoginModal />
-          <RegisterModal />
           {children}
           {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}
         </ClientOnly>

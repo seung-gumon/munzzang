@@ -13,17 +13,6 @@ function useMap() {
   const { isLoading, myLocation } = useGetClientLocation();
 
   useEffect(() => {
-    if (myLocation !== null) {
-      const { latitude, longitude } = myLocation;
-
-      mapRef.current = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(latitude, longitude),
-        zoomControl: true,
-      });
-    }
-  }, [myLocation]);
-
-  useEffect(() => {
     if (myLocation) {
       const currentPosition = [myLocation.latitude, myLocation.longitude];
 
