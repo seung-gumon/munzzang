@@ -1,7 +1,14 @@
-import Map from '@/pages/Map';
+'use client';
 
-export default function Home() {
+import Navbar from '@/app/components/navbar/Navbar';
+import Map from '@/app/components/Map';
+
+function Page() {
   return (
-    <Map />
+    <main className="w-full h-full flex flex-col md:flex-row">
+      <Navbar />
+      <Map />
+    </main>
   );
 }
+export default Page;

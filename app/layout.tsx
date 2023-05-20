@@ -1,14 +1,13 @@
 import React from 'react';
 import { Noto_Sans_KR } from 'next/font/google';
 import { Metadata } from 'next';
-import './globals.css';
-import Navbar from '@/app/components/navbar/Navbar';
-import ClientOnly from '@/app/components/ClientOnly';
-import RegisterModal from '@/app/components/modals/RegisterModal';
-import LoginModal from '@/app/components/modals/LoginModal';
+import '@/app/globals.css';
 import ToasterProvider from '@/app/providers/ToasterProvider';
 import Script from 'next/script';
-import MapNavs from '@/app/components/navbar/MapNavs';
+import ClientOnly from '@/app/components/ClientOnly';
+import Navbar from '@/app/components/navbar/Navbar';
+import Map from '@/app/components/Map';
+import AsideBar from '@/app/components/Aside';
 
 export const metadata : Metadata = {
   title: 'Pets And Mats',
@@ -66,8 +65,12 @@ export default async function RootLayout({
         />
         <ClientOnly>
           <ToasterProvider />
+          <div className="w-full h-full flex flex-col md:flex-row">
+            <AsideBar />
+            <Navbar />
+            <Map />
+          </div>
           {children}
-          {/* <Modal isOpen title="hello world" actionLabel="제출" /> */}
         </ClientOnly>
       </body>
     </html>

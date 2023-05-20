@@ -8,7 +8,6 @@ import { Transition } from '@headlessui/react';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut, useSession } from 'next-auth/react';
-import { toast } from 'react-hot-toast';
 
 function UserMenu() {
   const { onOpen } = useRegisterModal();

@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    optimizeCss: true, // enabling this will enable SSR for Tailwind
   },
   images : {
     domains: [
