@@ -66,8 +66,10 @@ export default async function RootLayout({
         <ClientOnly>
           <ToasterProvider />
           <div className="w-full h-full flex flex-col md:flex-row">
-            <AsideBar />
             <Navbar />
+            <AsideBar
+              children={children}
+            />
             <Map />
           </div>
           {children}

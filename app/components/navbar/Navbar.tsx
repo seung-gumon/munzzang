@@ -21,8 +21,7 @@ function Navbar() {
         className="absolute z-[50] top-1/2 right-[-13px] bg-white rounded-full shadow-md border-zinc-200 border-[1px]"
         onClick={() => onToggle()}
       >
-        {isOpen ? <BiRightArrowAlt size={26} /> : <BiLeftArrowAlt size={26} />}
-
+        {isOpen ? <BiLeftArrowAlt size={26} /> : <BiRightArrowAlt size={26} />}
       </button>
     </div>
 
