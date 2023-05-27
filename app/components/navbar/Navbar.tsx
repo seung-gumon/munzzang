@@ -6,8 +6,8 @@ import NavItem from '@/app/components/navbar/NavItem';
 
 function Navbar() {
   return (
-    <nav className="absolute bottom-0 z-10 flex flex-row w-full">
-      <NavItem href="/animal-hospital" icon={MdLocalHospital} title="동물 병원" />
+    <nav className="absolute bottom-0 z-[9999] flex flex-row w-full">
+
       <NavItem href="/animal-pharmacy" icon={CgProfile} title="MY" />
     </nav>
 
