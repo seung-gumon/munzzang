@@ -1,28 +1,20 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
-import { Transition } from '@headlessui/react';
-import useIsOpenAsideBar from '@/app/hooks/useIsOpenAsideBar';
+import { BsChatDots } from 'react-icons/bs';
+import useWindowSize from '@/app/hooks/useWindowSize';
 
-function AsideBar({ children } : PropsWithChildren) {
-  const { isOpen } = useIsOpenAsideBar();
+function AsideBar() {
+  const { width } = useWindowSize();
+
+  const iconSize = width > 768 ? 24 : 32;
 
   return (
-    <Transition
-      show={isOpen}
-      enter="transition ease-out duration-300"
-      enterFrom="-translate-x-[410px] bg-red-300"
-      enterTo="bg-amber-500"
-      leave="transition ease-in duration-200"
-      leaveFrom="translate-x-[90px]"
-      leaveTo="-translate-x-[410px]"
-      as="aside"
-      className="h-full absolute z-2 z-[40] border-zinc-200 border-r-[1px] rounded-r-lg shadow-2xl "
-    >
-      <div className="w-[410px] h-full p-5">
-        {children}
-      </div>
-    </Transition>
+    <aside className="flex flex-col absolute right-3 z-50 bottom-24 gap-y-2">
+      <button type="button" className="p-3 bg-white rounded-full border-zinc-200 border-[1px] shadow-lg">
+        <BsChatDots size={iconSize} />
+      </button>
+
+    </aside>
 
   );
 }

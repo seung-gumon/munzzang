@@ -18,10 +18,8 @@ function useMap() {
 
       const map = new naver.maps.Map('map', {
         center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
-        zoomControl: true,
-        zoomControlOptions: { // 줌 컨트롤의 옵션
-          position: naver.maps.Position.TOP_RIGHT,
-        },
+        zoomControl: false,
+
       });
 
       new naver.maps.Marker({

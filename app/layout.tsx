@@ -65,14 +65,9 @@ export default async function RootLayout({
         />
         <ClientOnly>
           <ToasterProvider />
-          <div className="w-full h-full flex flex-col md:flex-row">
-            <Navbar />
-            <AsideBar
-              children={children}
-            />
-            <Map />
+          <div className="max-w-[1400px] w-full h-full mx-auto">
+            {children}
           </div>
-          {children}
         </ClientOnly>
       </body>
     </html>
