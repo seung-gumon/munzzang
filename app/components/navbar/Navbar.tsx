@@ -1,6 +1,5 @@
 'use client';
 
-import { MdLocalHospital } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import NavItem from '@/app/components/navbar/NavItem';
 
