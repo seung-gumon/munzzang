@@ -1,6 +1,7 @@
 import { useEffect, useRef, RefObject } from 'react';
 import { useRouter } from 'next/navigation';
 import { type Location } from '@/app/model/Location';
+import Link from 'next/link';
 
 interface LocationInfo {
   lat: number;
@@ -31,9 +32,21 @@ const userMarkerImage = {
 function createInfoWindowContent(info: string) {
   const infoWindowContent = document.createElement('div');
   infoWindowContent.innerHTML = `
-    <section class="bg-white rounded p-1.5">
-      <h3 class="text-lg font-bold mb-2">${info} &rarr;</h3>
-    </section>
+    <div class="bg-white rounded">
+        <div class="py-3.5 px-5 relative">
+            <div class="inline-block align-top">
+                <strong class="text-sky-600 text-base font-bold mr-1.5">지축역한림풀에버</strong>
+                <span class="text-neutral-400 text-sm">아파트</span>
+            </div>
+            <div class="mt-1 text-xs">
+                <span class="text-neutral-700">경기 고양시 덕양구 오부자로 15</span>
+            </div>
+           
+            <button class="mt-1 text-xs">
+                <span class="text-base overflow-hidden">상세 보기 &rarr;</span>
+            </button>
+        </div>
+    </div>
   `;
   return infoWindowContent;
 }
