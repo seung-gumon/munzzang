@@ -32,7 +32,7 @@ const userMarkerImage = {
 function createInfoWindowContent(info: string) {
   const infoWindowContent = document.createElement('div');
   infoWindowContent.innerHTML = `
-    <div class="bg-white rounded">
+    <div class="bg-white rounded w-[calc(100%+2rem)]">
         <div class="py-3.5 px-5 relative">
             <div class="inline-block align-top">
                 <strong class="text-sky-600 text-base font-bold mr-1.5">지축역한림풀에버</strong>
