@@ -9,3 +9,14 @@ body,
     height : 100%;
     @apply text-zinc-800;
 }
+
+
+.scroll-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar : none;
+}
+
+.bg-symbol-yellow {
+    background-color: #FFC107;
+}

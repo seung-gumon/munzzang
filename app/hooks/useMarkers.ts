@@ -42,9 +42,9 @@ function createInfoWindowContent(info: string) {
                 <span class="text-neutral-700">경기 고양시 덕양구 오부자로 15</span>
             </div>
            
-            <button class="mt-1 text-xs">
-                <span class="text-base overflow-hidden">상세 보기 &rarr;</span>
-            </button>
+            <a href="/chat" class="mt-1 text-xs">
+                <span class="overflow-hidden">상세 보기 &rarr;</span>
+            </Link>
         </div>
     </div>
   `;

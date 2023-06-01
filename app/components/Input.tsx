@@ -19,10 +19,11 @@ function Input<T extends FieldValues>({
 }: InputProps<T>) {
   return (
     <input
-      className="shadow-md rounded-md border border-gray-300 p-2.5 w-full"
+      className="shadow-md rounded-md border border-gray-300 p-2.5 w-full focus:outline-none"
       {...register(label, rules)}
       {...props}
     />
+
   );
 }
 

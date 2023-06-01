@@ -1,8 +1,9 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Input from '@/app/components/Input';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { CgPill } from 'react-icons/cg';
 import { MdOutlineLocalHospital } from 'react-icons/md';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const filters = [
   {
@@ -47,8 +48,11 @@ function SearchBar() {
       onSubmit={handleSubmit(searchingAnimalHospitals)}
       className="absolute z-50 top-[20px] left-0 w-full flex flex-col items-center justify-center max-w-[500px]"
     >
-      <div className="flex flex-col w-[90%]">
+      <div className="flex flex-col w-[90%] relative">
         <Input label="searchTerm" register={register} type="search" />
+        <button type="submit" className="absolute right-0 z-30 bg-symbol-yellow text-white rounded-md p-2 shadow-sm" style={{ top: '3%', right: '0.8%' }}>
+          <AiOutlineSearch size={24} />
+        </button>
         <section className="flex justify-start items-center w-full pl-0.5 mt-2.5 gap-x-5">
           {
             filters.map((btn) => (
