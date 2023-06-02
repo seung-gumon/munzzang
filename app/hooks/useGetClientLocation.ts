@@ -33,6 +33,7 @@ function useGetClientLocation() : UseGetLocation {
         handleGeolocationError();
       } finally {
         setIsLoading(false);
+        console.log('finally');
       }
     };
 
