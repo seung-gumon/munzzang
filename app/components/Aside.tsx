@@ -1,6 +1,7 @@
 'use client';
 
 import { BsChatDots } from 'react-icons/bs';
+import { AiOutlineAim } from 'react-icons/ai';
 import useWindowSize from '@/app/hooks/useWindowSize';
 import Link from 'next/link';
 
@@ -14,6 +15,11 @@ function AsideBar() {
       <button type="button" className="p-3 bg-white rounded-full border-zinc-200 border-[1px] shadow-lg">
         <Link href="/chat">
           <BsChatDots size={iconSize} />
+        </Link>
+      </button>
+      <button type="button" className="p-3 bg-white rounded-full border-zinc-200 border-[1px] shadow-lg">
+        <Link href="/">
+          <AiOutlineAim size={iconSize} />
         </Link>
       </button>
     </aside>

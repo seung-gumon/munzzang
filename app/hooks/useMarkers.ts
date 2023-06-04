@@ -1,7 +1,6 @@
 import { useEffect, useRef, RefObject } from 'react';
 import { useRouter } from 'next/navigation';
 import { type Location } from '@/app/model/Location';
-import Link from 'next/link';
 
 interface LocationInfo {
   lat: number;
