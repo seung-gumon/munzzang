@@ -5,9 +5,7 @@ import '@/app/globals.css';
 import ToasterProvider from '@/app/providers/ToasterProvider';
 import Script from 'next/script';
 import ClientOnly from '@/app/components/ClientOnly';
-import Navbar from '@/app/components/navbar/Navbar';
-import Map from '@/app/components/Map';
-import AsideBar from '@/app/components/Aside';
+import ReactQueryProvider from '@/app/providers/ReactQueryProvider';
 
 export const metadata : Metadata = {
   title: 'Pets And Mats',
@@ -58,18 +56,22 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
+
     <html lang="ko">
       <body id="body" className={font.className}>
         <Script
           src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fwhavib8pn"
         />
         <ClientOnly>
-          <ToasterProvider />
-          <div className="max-w-[1400px] w-full h-full mx-auto">
-            {children}
-          </div>
+          <ReactQueryProvider>
+            <ToasterProvider />
+            <div className="max-w-[1400px] w-full h-full mx-auto">
+              {children}
+            </div>
+          </ReactQueryProvider>
         </ClientOnly>
       </body>
     </html>
+
   );
 }

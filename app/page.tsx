@@ -1,18 +1,19 @@
-'use client';
+import { dehydrate } from '@tanstack/react-query';
+import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
+import ReactQueryHydrate from '@/app/components/client/ReactQueryHydrate';
+import getQueryClient from '@/app/libs/getQueryClient';
+import PageClient from '@/app/components/client/Page.client';
 
-import Navbar from '@/app/components/navbar/Navbar';
-import Map from '@/app/components/Map';
-import AsideBar from '@/app/components/Aside';
-import SearchBar from '@/app/components/navbar/SearchBar';
+async function Page() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(['hospital'], getListQueryHospital);
+  await queryClient.prefetchQuery(['pharmacy'], getListQueryPharmacy);
+  const dehydratedState = dehydrate(queryClient);
 
-function Page() {
   return (
-    <main className="relative w-full h-full">
-      <SearchBar />
-      <AsideBar />
-      <Navbar />
-      <Map />
-    </main>
+    <ReactQueryHydrate state={dehydratedState}>
+      <PageClient />
+    </ReactQueryHydrate>
   );
 }
 export default Page;
