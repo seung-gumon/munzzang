@@ -1,7 +1,7 @@
 function AnimalPharmacyPage() {
   return (
     <div>
-      <span>영수증 =</span>
+      <span>영수증</span>
     </div>
   );
 }
