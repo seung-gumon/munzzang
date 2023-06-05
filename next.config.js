@@ -9,7 +9,7 @@ const nextConfig = {
         'lh3.googleusercontent.com',
         "k.kakaocdn.net",
     ],
-  }
+  },
 }
 
 module.exports = nextConfig

@@ -5,17 +5,18 @@ import Map from '@/app/components/Map';
 import AsideBar from '@/app/components/Aside';
 import SearchBar from '@/app/components/navbar/SearchBar';
 import { useQuery } from '@tanstack/react-query';
-import { getListQueryHospital } from '@/app/queryFns/listQueryFns';
+import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
+import { useEffect } from 'react';
 
 function Page() {
-  // const { data: hospitalData } = useQuery({
-  //   queryKey: ['hospital'],
-  //   queryFn: getListQueryHospital,
-  // });
-  //
+  const { data: hospitalData, isLoading } = useQuery({
+    queryKey: ['hospital'],
+    queryFn: getListQueryHospital,
+  });
+
   // const { data: pharmacyData } = useQuery({
   //   queryKey: ['pharmacy'],
-  //   queryFn: getListQueryHospital,
+  //   queryFn: getListQueryPharmacy,
   // });
 
   return (

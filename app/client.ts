@@ -13,7 +13,6 @@ export class FetchError extends Error {
 }
 
 async function rejectIfNeeded(response: Response) {
-  console.log('Response :::', response);
   if (!response.ok) {
     const data = await response.json();
     throw new FetchError(response, data);
@@ -27,7 +26,7 @@ export const fetchClient = {
   async get<T>(path: string, config: RequestConfig = {}) {
     try {
       const query = config?.params ? QueryString.stringify(config?.params, { addQueryPrefix: true }) : '';
-      const response = await fetch(`${this.baseUrl}/${this.env}/${path}/?sigunNm=%EB%B6%80%EC%B2%9C%EC%8B%9C`, {
+      const response = await fetch(`${this.baseUrl}/${this.env}/${path}?sigunNm=%EC%9A%A9%EC%9D%B8%EC%8B%9C`, {
         method: 'GET',
         headers: {
           ...(config?.headers ?? {}),

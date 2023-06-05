@@ -1,6 +1,8 @@
 import { useEffect, useRef, RefObject } from 'react';
 import { useRouter } from 'next/navigation';
 import { type Location } from '@/app/model/Location';
+import { useQuery } from '@tanstack/react-query';
+import { getListQueryHospital } from '@/app/queryFns/listQueryFns';
 
 interface LocationInfo {
   lat: number;
@@ -35,7 +37,7 @@ function createInfoWindowContent(info: string) {
         <div class="py-3.5 px-5 relative">
             <div class="inline-block align-top">
                 <strong class="text-sky-600 text-base font-bold mr-1.5">지축역한림풀에버</strong>
-                <span class="text-neutral-400 text-sm">아파트</span>
+                <span class="text-neutral-400 text-sm">${info}</span>
             </div>
             <div class="mt-1 text-xs">
                 <span class="text-neutral-700">경기 고양시 덕양구 오부자로 15</span>
@@ -54,6 +56,11 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
   const markersRef = useRef<MapRef | null>(null);
   const router = useRouter();
 
+  const { data: hospitalData, isLoading } = useQuery({
+    queryKey: ['hospital'],
+    queryFn: getListQueryHospital,
+  });
+
   useEffect(() => {
     if (!myLocation || !mapRef.current) return;
 
@@ -68,21 +75,21 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
     const markers: naver.maps.Marker[] = [];
     const listeners: naver.maps.MapEventListener[] = [];
 
-    dummyLocations.forEach((location) => {
+    hospitalData?.data.Items.forEach((location) => {
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(location.lat, location.lng),
         map: mapRef.current!,
       });
 
       const infoWindow = new naver.maps.InfoWindow({
-        content: createInfoWindowContent(location.info),
+        content: createInfoWindowContent(location.sidoNm),
         borderWidth: 0,
         // borderRadius: '100%',
       });
 
       const listener = naver.maps.Event.addListener(marker, 'click', () => {
         infoWindow.open(mapRef.current!, marker);
-        router.push(`/?lat=${location.lat}&lng=${location.lng}&info=${location.info}`);
+        router.push(`/?lat=${location.lat}&lng=${location.lng}&info=${location.id}`);
       });
 
       listeners.push(listener);

@@ -7,7 +7,6 @@ function Page() {
     <div className="flex flex-col gap-y-3">
       <WriteReview />
       <PlaceHeader />
-
       <PlaceInfo />
     </div>
 
