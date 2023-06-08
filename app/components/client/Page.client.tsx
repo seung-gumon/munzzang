@@ -6,7 +6,6 @@ import AsideBar from '@/app/components/Aside';
 import SearchBar from '@/app/components/navbar/SearchBar';
 import { useQuery } from '@tanstack/react-query';
 import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
-import { useEffect } from 'react';
 
 function Page() {
   const { data: hospitalData, isLoading } = useQuery({
@@ -14,10 +13,10 @@ function Page() {
     queryFn: getListQueryHospital,
   });
 
-  // const { data: pharmacyData } = useQuery({
-  //   queryKey: ['pharmacy'],
-  //   queryFn: getListQueryPharmacy,
-  // });
+  const { data: pharmacyData } = useQuery({
+    queryKey: ['pharmacy'],
+    queryFn: getListQueryPharmacy,
+  });
 
   return (
     <main className="relative w-full h-full">

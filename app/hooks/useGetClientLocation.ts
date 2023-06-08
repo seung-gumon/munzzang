@@ -38,6 +38,7 @@ function useGetClientLocation() : UseGetLocation {
           const [latitude, longitude] = (window.sessionStorage.getItem('coords') as string).split(',');
           lat = latitude;
           lng = longitude;
+
           setCoordinates({ latitude: +latitude, longitude: +longitude });
         } else {
           const position = await new Promise<GeolocationPosition>((resolve, reject) => {
