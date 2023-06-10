@@ -49,6 +49,7 @@ function SearchBar() {
       className="absolute z-50 top-[20px] left-0 w-full flex flex-col items-center justify-center max-w-[500px]"
     >
       <div className="flex flex-col w-[90%] relative">
+
         <Input label="searchTerm" register={register} type="search" />
         <button type="submit" className="absolute right-0 z-30 bg-symbol-yellow text-white rounded-md p-2 shadow-sm" style={{ top: '3%', right: '0.8%' }}>
           <AiOutlineSearch size={24} />

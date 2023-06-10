@@ -13,10 +13,10 @@ interface MapRef {
 }
 
 const userMarkerImage = {
-  url: 'https://map.pstatic.net/res/category/image/00024-00012.png',
+  url: '/images/my-position.png',
   size: new naver.maps.Size(50, 50),
   origin: new naver.maps.Point(0, 0),
-  anchor: new naver.maps.Point(25, 25),
+  anchor: new naver.maps.Point(14, 14),
 };
 
 const hospitalMarkerImage = {
@@ -80,14 +80,14 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
                 <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
             </div>
             <div class="mt-1 text-xs">
-                <span class="text-neutral-700">경기 고양시 덕양구 오부자로 15</span>
+                <span class="text-neutral-700">${location.roadNmAddr}</span>
             </div>
            
-            <a href="/review" class="mt-1 text-xs">
+            <a href=/review/${location.id} class="mt-1 text-xs">
                 <span class="overflow-hidden">상세 보기 &rarr;</span>
-            </Link>
+            </a>
         </div>
-    </div>
+    </div>  
   `,
         borderWidth: 0,
         // borderRadius: '100%',

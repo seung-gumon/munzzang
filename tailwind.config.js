@@ -8,7 +8,19 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary : {
+          100 : '#FFC107',
+          200 : '#DDA400',
+          300 : '#916400',
+        },
+        accent : {
+          100 : '#FFA000',
+          200 : '#8f4500',
+        },
+      }
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {
