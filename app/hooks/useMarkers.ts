@@ -4,6 +4,7 @@ import {
 import { type Location } from '@/app/model/Location';
 import { useQuery } from '@tanstack/react-query';
 import { getListQueryHospital } from '@/app/queryFns/listQueryFns';
+import { useRouter } from 'next/navigation';
 // import hello from '../../public/images/hospital.png'
 
 interface MapRef {
@@ -28,6 +29,7 @@ const hospitalMarkerImage = {
 
 function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | null) {
   const markersRef = useRef<MapRef | null>(null);
+  const router = useRouter();
 
   const { data: hospitalData, isLoading } = useQuery({
     queryKey: ['hospital'],
@@ -74,28 +76,40 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
 
       const infoWindow = new naver.maps.InfoWindow({
         content: `
-    <div class="bg-white rounded w-[calc(100%+2rem)]">
-        <div class="py-3.5 px-5 relative">
-            <div class="inline-block align-top">
-                <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
-            </div>
-            <div class="mt-1 text-xs">
-                <span class="text-neutral-700">${location.roadNmAddr}</span>
-            </div>
-           
-            <a href=/review/${location.id} class="mt-1 text-xs">
-                <span class="overflow-hidden">상세 보기 &rarr;</span>
-            </a>
+<div class="bg-white rounded w-[calc(100%+2rem)]">
+    <div class="py-3.5 px-5 relative">
+        <div class="inline-block align-top">
+            <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
         </div>
-    </div>  
-  `,
+        <div class="mt-1 text-xs">
+            <span class="text-neutral-700">${location.roadNmAddr}</span>
+        </div>
+
+        <a href="/review/${location.id}" class="mt-1 text-xs custom-link">
+            <span class="overflow-hidden">상세 보기 &rarr;</span>
+        </a>
+    </div>
+</div>  
+    `,
         borderWidth: 0,
-        // borderRadius: '100%',
       });
 
       const listener = naver.maps.Event.addListener(marker, 'click', () => {
         infoWindow.open(mapRef.current!, marker);
-        // router.push(`/?lat=${location.lat}&lng=${location.lng}&info=${location.id}`);
+
+        function handleClick(event) {
+          event.preventDefault();
+          const href = event.currentTarget.getAttribute('href');
+          router.push(href);
+        }
+
+        // 각 클릭 이벤트에 대해 DOM에 이벤트 리스너를 추가합니다.
+        setTimeout(() => {
+          document.querySelectorAll('.custom-link').forEach((link) => {
+            link.removeEventListener('click', handleClick);
+            link.addEventListener('click', handleClick);
+          });
+        }, 0);
       });
 
       listeners.push(listener);
