@@ -97,17 +97,19 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
       const listener = naver.maps.Event.addListener(marker, 'click', () => {
         infoWindow.open(mapRef.current!, marker);
 
-        function handleClick(event) {
+        function handleClick(event: MouseEvent) {
           event.preventDefault();
-          const href = event.currentTarget.getAttribute('href');
+          const currentTarget = event.currentTarget as HTMLAnchorElement;
+          const href = currentTarget.getAttribute('href')!;
           router.push(href);
         }
 
         // 각 클릭 이벤트에 대해 DOM에 이벤트 리스너를 추가합니다.
         setTimeout(() => {
-          document.querySelectorAll('.custom-link').forEach((link) => {
-            link.removeEventListener('click', handleClick);
-            link.addEventListener('click', handleClick);
+          document.querySelectorAll('.custom-link').forEach((link: Element) => {
+            const anchor = link as HTMLAnchorElement;
+            anchor.removeEventListener('click', handleClick);
+            anchor.addEventListener('click', handleClick);
           });
         }, 0);
       });
