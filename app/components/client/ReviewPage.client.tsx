@@ -1,6 +1,6 @@
 'use client';
 
-import { getListQueryPharmacy, getMedicalFindById } from '@/app/queryFns/listQueryFns';
+import { getReviewFindById } from '@/app/queryFns/listQueryFns';
 import WriteReview from '@/app/review/components/WriteReview';
 import PlaceHeader from '@/app/review/components/PlaceHeader';
 import PlaceInfo from '@/app/review/components/PlaceInfo';
@@ -11,8 +11,8 @@ function ReviewPageClient() {
   const params = useParams();
 
   const { data: medicalInfo } = useQuery({
-    queryKey: ['pharmacy', ''],
-    queryFn: () => getMedicalFindById(''),
+    queryKey: ['hospital', ''],
+    queryFn: () => getReviewFindById(params.id as string),
   });
 
   return (

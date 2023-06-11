@@ -8,4 +8,4 @@ interface Response {
 
 export const getListQueryHospital = async (sigunNm : string) => fetchClient.get<Response>('hospital', { params: { sigunNm } });
 export const getListQueryPharmacy = async (sigunNm : string) => fetchClient.get<Response>('pharmacy', { params: { sigunNm } });
-export const getMedicalFindById = async (id : string) => fetchClient.get<Response>('medical', { params: { id } });
+export const getReviewFindById = async (reviewId : string) => fetchClient.get<Response>('review', { params: { id: reviewId } });

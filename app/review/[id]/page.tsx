@@ -3,7 +3,7 @@ import PlaceHeader from '@/app/review/components/PlaceHeader';
 import PlaceInfo from '@/app/review/components/PlaceInfo';
 import getQueryClient from '@/app/libs/getQueryClient';
 import { dehydrate } from '@tanstack/react-query';
-import { getMedicalFindById } from '@/app/queryFns/listQueryFns';
+import { getReviewFindById } from '@/app/queryFns/listQueryFns';
 import ReactQueryHydrate from '@/app/components/client/ReactQueryHydrate';
 import ReviewPageClient from '@/app/components/client/ReviewPage.client';
 
@@ -13,7 +13,7 @@ interface PageProps {
 
 async function Page({ params } : PageProps) {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(['pharmacy', params.id], () => getMedicalFindById(params.id));
+  await queryClient.prefetchQuery(['pharmacy', params.id], () => getReviewFindById(params.id));
   const dehydratedState = dehydrate(queryClient);
 
   return (

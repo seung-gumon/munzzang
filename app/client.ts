@@ -25,7 +25,6 @@ export const fetchClient = {
   baseUrl: 'https://198aztjqg9.execute-api.ap-northeast-2.amazonaws.com',
   async get<T>(path: string, config: RequestConfig = {}) {
     try {
-      // console.log('config :::', config.params);
       const query = config?.params ? QueryString.stringify(config?.params, { addQueryPrefix: true }) : '';
       const response = await fetch(`${this.baseUrl}/${this.env}/${path}${query}`, {
         method: 'GET',
