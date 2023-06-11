@@ -44,7 +44,6 @@ export const fetchClient = {
         console.log('exception Error:', exception.message);
         throw exception;
       } else {
-        console.log('아니 시발 왜 안돼');
         throw new Error('An unknown error occurred during fetch');
       }
     }

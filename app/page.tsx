@@ -2,7 +2,7 @@ import { dehydrate } from '@tanstack/react-query';
 import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
 import ReactQueryHydrate from '@/app/components/client/ReactQueryHydrate';
 import getQueryClient from '@/app/libs/getQueryClient';
-import PageClient from '@/app/components/client/Page.client';
+import MainPageClient from '@/app/components/client/MainPage.client';
 
 async function Page() {
   const queryClient = getQueryClient();
@@ -12,7 +12,7 @@ async function Page() {
 
   return (
     <ReactQueryHydrate state={dehydratedState}>
-      <PageClient />
+      <MainPageClient />
     </ReactQueryHydrate>
   );
 }

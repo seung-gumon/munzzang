@@ -18,8 +18,6 @@ function useMap() {
 
       const map = mapInitialization();
 
-      console.log(map.getCenter(), 'map get bounds');
-
       // Update map center when query string changes
       const queryStringLat = searchParams?.get('lat');
       const queryStringLng = searchParams?.get('lng');

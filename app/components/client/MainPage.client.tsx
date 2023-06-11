@@ -7,7 +7,7 @@ import SearchBar from '@/app/components/navbar/SearchBar';
 import { useQuery } from '@tanstack/react-query';
 import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
 
-function Page() {
+function MainPageClient() {
   const { data: hospitalData, isLoading } = useQuery({
     queryKey: ['hospital'],
     queryFn: getListQueryHospital,
@@ -27,4 +27,4 @@ function Page() {
     </main>
   );
 }
-export default Page;
+export default MainPageClient;
