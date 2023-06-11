@@ -25,8 +25,9 @@ export const fetchClient = {
   baseUrl: 'https://198aztjqg9.execute-api.ap-northeast-2.amazonaws.com',
   async get<T>(path: string, config: RequestConfig = {}) {
     try {
+      // console.log('config :::', config.params);
       const query = config?.params ? QueryString.stringify(config?.params, { addQueryPrefix: true }) : '';
-      const response = await fetch(`${this.baseUrl}/${this.env}/${path}?sigunNm=%EC%9A%A9%EC%9D%B8%EC%8B%9C`, {
+      const response = await fetch(`${this.baseUrl}/${this.env}/${path}${query}`, {
         method: 'GET',
         headers: {
           ...(config?.headers ?? {}),
@@ -41,7 +42,7 @@ export const fetchClient = {
       };
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        console.log('exception Error:', exception.message);
+        console.log('GET 에러 났음', exception.message);
         throw exception;
       } else {
         throw new Error('An unknown error occurred during fetch');

@@ -1,10 +1,12 @@
 import {
-  useEffect, useRef, RefObject, useCallback,
+  useEffect, useRef, RefObject, useCallback, useState,
 } from 'react';
 import { type Location } from '@/app/model/Location';
 import { useQuery } from '@tanstack/react-query';
-import { getListQueryHospital } from '@/app/queryFns/listQueryFns';
+import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
 import { useRouter } from 'next/navigation';
+import { debounce } from 'lodash';
+
 // import hello from '../../public/images/hospital.png'
 
 interface MapRef {
@@ -30,11 +32,48 @@ const hospitalMarkerImage = {
 function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | null) {
   const markersRef = useRef<MapRef | null>(null);
   const router = useRouter();
+  const [focusedCity, setFocusedCity] = useState<string | null>(null);
 
-  const { data: hospitalData, isLoading } = useQuery({
-    queryKey: ['hospital'],
-    queryFn: getListQueryHospital,
+  const { data: hospitalData } = useQuery({
+    queryKey: ['hospital', focusedCity],
+    queryFn: () => getListQueryHospital(focusedCity!),
+    enabled: focusedCity !== null,
   });
+
+  const { data: pharmacyData } = useQuery({
+    queryKey: ['pharmacy', focusedCity],
+    queryFn: () => getListQueryPharmacy(focusedCity!),
+    enabled: focusedCity !== null,
+  });
+
+  useEffect(() => {
+    if (mapRef.current && naver.maps.Service) {
+      const debouncedHandleIdle = debounce(() => {
+        console.log('Hello');
+        const center : naver.maps.Coord | undefined = mapRef.current?.getCenter();
+        // @ts-ignore
+        const lat = center.lat() as number;
+        // @ts-ignore
+        const lng = center.lng() as number;
+        naver.maps.Service.reverseGeocode({
+          coords: new naver.maps.LatLng(lat, lng),
+        }, (status, response) => {
+          if (status !== naver.maps.Service.Status.OK) {
+            return alert('무엇인가 잘못 되었습니다. 다시 시도해주세요.');
+          }
+          const city = response.v2.results[1].region.area2.name.split(' ')[0];
+          setFocusedCity(city);
+        });
+      }, 950); // 950ms delay
+
+      naver.maps.Event.addListener(mapRef.current, 'idle', debouncedHandleIdle);
+
+      return () => {
+        // when component unmounts, cancel the debounce function
+        debouncedHandleIdle.cancel();
+      };
+    }
+  }, [naver.maps.Service, mapRef.current]);
 
   useEffect(() => {
     if (!myLocation || !mapRef.current) return;
@@ -47,26 +86,10 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
       icon: userMarkerImage,
     });
 
-    // naver.maps.Event.addListener(mapRef.current, 'idle', () => {
-    //   const center = mapRef.current?.getCenter();
-    //   // @ts-ignore
-    //   const lat = center?.lat();
-    //   // @ts-ignore
-    //   const lng = center?.lng();
-    //
-    //   naver.maps.Service.reverseGeocode({
-    //     coords: new naver.maps.LatLng(lat, lng),
-    //   }, (status, response) => {
-    //     if (status !== naver.maps.Service.Status.OK) {
-    //       return alert('Something wrong!');
-    //     }
-    //     console.log('response :::', response.v2);
-    //   });
-    // });
-
     const markers: naver.maps.Marker[] = [];
     const listeners: naver.maps.MapEventListener[] = [];
 
+    // 이거 약국도 이런식으로 빼야 함
     hospitalData?.data.Items.forEach((location) => {
       const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(location.lat, location.lng),
@@ -130,7 +153,7 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
         markersRef.current.markers.forEach((marker) => marker.setMap(null));
       }
     };
-  }, [myLocation, mapRef]);
+  }, [myLocation, mapRef.current, hospitalData]);
 
   return markersRef;
 }

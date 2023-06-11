@@ -6,6 +6,6 @@ interface Response {
   Items : MedicalFacility[];
 }
 
-export const getListQueryHospital = async () => fetchClient.get<Response>('hospital');
-export const getListQueryPharmacy = async () => fetchClient.get<Response>('pharmacy');
+export const getListQueryHospital = async (sigunNm : string) => fetchClient.get<Response>('hospital', { params: { sigunNm } });
+export const getListQueryPharmacy = async (sigunNm : string) => fetchClient.get<Response>('pharmacy', { params: { sigunNm } });
 export const getMedicalFindById = async (id : string) => fetchClient.get<Response>('medical', { params: { id } });

@@ -8,15 +8,15 @@ import { useQuery } from '@tanstack/react-query';
 import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
 
 function MainPageClient() {
-  const { data: hospitalData, isLoading } = useQuery({
-    queryKey: ['hospital'],
-    queryFn: getListQueryHospital,
-  });
-
-  const { data: pharmacyData } = useQuery({
-    queryKey: ['pharmacy'],
-    queryFn: getListQueryPharmacy,
-  });
+  // const { data: hospitalData, isLoading } = useQuery({
+  //   queryKey: ['hospital'],
+  //   queryFn: getListQueryHospital,
+  // });
+  //
+  // const { data: pharmacyData } = useQuery({
+  //   queryKey: ['pharmacy'],
+  //   queryFn: getListQueryPharmacy,
+  // });
 
   return (
     <main className="relative w-full h-full">
