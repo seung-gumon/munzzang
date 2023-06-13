@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQueryFns';
 import { useRouter } from 'next/navigation';
 import { debounce } from 'lodash';
+import { MedicalFacility } from '@/app/model/MedicalFacility';
 
 // import hello from '../../public/images/hospital.png'
 
@@ -98,35 +99,34 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
     const markers: naver.maps.Marker[] = [];
     const listeners: naver.maps.MapEventListener[] = [];
 
-    pharmacyData?.data.Items.forEach((location) => {
-      const pharmacyMarker = new naver.maps.Marker({
+    function createMarkerAndListener(location : { lat : number, lng:number } & MedicalFacility, markerImage : typeof pharmacyMarkerImage, infoType : 'hospital' | 'pharmacy') {
+      const marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(location.lat, location.lng),
         map: mapRef.current!,
-        icon: pharmacyMarkerImage,
+        icon: markerImage,
       });
 
-      const pharmacyInfoWindow = new naver.maps.InfoWindow({
+      const infoWindow = new naver.maps.InfoWindow({
         content: `
           <div class="bg-white rounded w-[calc(100%+2rem)]">
-              <div class="py-3.5 px-5 relative">
-                  <div class="inline-block align-top">
-                      <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
-                  </div>
-                  <div class="mt-1 text-xs">
-                      <span class="text-neutral-700">${location.roadNmAddr}</span>
-                  </div>
-          
-                  <a href="/review/pharmacy/${location.id}" class="mt-1 text-xs custom-link">
-                      <span class="overflow-hidden">상세 보기 &rarr;</span>
-                  </a>
+            <div class="py-3.5 px-5 relative">
+              <div class="inline-block align-top">
+                <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
               </div>
-          </div>  
-    `,
+              <div class="mt-1 text-xs">
+                <span class="text-neutral-700">${location.roadNmAddr}</span>
+              </div>
+          
+              <a href="/review/${infoType}/${location.id}" class="mt-1 text-xs custom-link">
+                <span class="overflow-hidden">상세 보기 &rarr;</span>
+              </a>
+            </div>
+          </div>`,
         borderWidth: 0,
       });
 
-      const listener = naver.maps.Event.addListener(pharmacyMarker, 'click', () => {
-        pharmacyInfoWindow.open(mapRef.current!, pharmacyMarker);
+      const listener = naver.maps.Event.addListener(marker, 'click', () => {
+        infoWindow.open(mapRef.current!, marker);
 
         function handleClick(event: MouseEvent) {
           event.preventDefault();
@@ -135,7 +135,6 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
           router.push(href);
         }
 
-        // 각 클릭 이벤트에 대해 DOM에 이벤트 리스너를 추가합니다.
         setTimeout(() => {
           document.querySelectorAll('.custom-link').forEach((link: Element) => {
             const anchor = link as HTMLAnchorElement;
@@ -146,59 +145,15 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
       });
 
       listeners.push(listener);
-      markers.push(pharmacyMarker);
+      markers.push(marker);
+    }
+
+    pharmacyData?.data.Items.forEach((location) => {
+      createMarkerAndListener(location, pharmacyMarkerImage, 'pharmacy');
     });
 
-    // 이거 약국도 이런식으로 빼야 함
     hospitalData?.data.Items.forEach((location) => {
-      const hospitalMarker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(location.lat, location.lng),
-        map: mapRef.current!,
-        icon: hospitalMarkerImage,
-      });
-
-      const hospitalInfoWindow = new naver.maps.InfoWindow({
-        content: `
-          <div class="bg-white rounded w-[calc(100%+2rem)]">
-              <div class="py-3.5 px-5 relative">
-                  <div class="inline-block align-top">
-                      <strong class="text-sky-600 text-base font-bold mr-1.5">${location.bizPlcNm}</strong>
-                  </div>
-                  <div class="mt-1 text-xs">
-                      <span class="text-neutral-700">${location.roadNmAddr}</span>
-                  </div>
-          
-                  <a href="/review/hospital/${location.id}" class="mt-1 text-xs custom-link">
-                      <span class="overflow-hidden">상세 보기 &rarr;</span>
-                  </a>
-              </div>
-          </div>  
-    `,
-        borderWidth: 0,
-      });
-
-      const listener = naver.maps.Event.addListener(hospitalMarker, 'click', () => {
-        hospitalInfoWindow.open(mapRef.current!, hospitalMarker);
-
-        function handleClick(event: MouseEvent) {
-          event.preventDefault();
-          const currentTarget = event.currentTarget as HTMLAnchorElement;
-          const href = currentTarget.getAttribute('href')!;
-          router.push(href);
-        }
-
-        // 각 클릭 이벤트에 대해 DOM에 이벤트 리스너를 추가합니다.
-        setTimeout(() => {
-          document.querySelectorAll('.custom-link').forEach((link: Element) => {
-            const anchor = link as HTMLAnchorElement;
-            anchor.removeEventListener('click', handleClick);
-            anchor.addEventListener('click', handleClick);
-          });
-        }, 0);
-      });
-
-      listeners.push(listener);
-      markers.push(hospitalMarker);
+      createMarkerAndListener(location, hospitalMarkerImage, 'hospital');
     });
 
     markersRef.current = { map: mapRef.current, userMarker: currentUserMarker, markers };
