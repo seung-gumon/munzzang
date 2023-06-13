@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 
 function ReviewPageClient() {
   const params = useParams();
+  console.log(params);
 
   const { data: medicalInfo } = useQuery({
     queryKey: ['hospital', ''],

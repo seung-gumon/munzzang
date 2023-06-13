@@ -9,23 +9,18 @@ function useMap() {
 
   useEffect(() => {
     if (myLocation) {
+      let lat : string | null = null;
+      let lng : string | null = null;
       const { latitude, longitude } = myLocation;
-
+      [lat, lng] = window.sessionStorage.getItem('lastCoords')?.split(',') || [null, null];
+      const lastZoom = window.sessionStorage.getItem('lastZoom');
       const mapInitialization = (): naver.maps.Map => new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(latitude, longitude),
+        center: new naver.maps.LatLng(lat ? +lat : latitude, lng ? +lng : longitude),
         zoomControl: false,
+        zoom: lastZoom ? +lastZoom : 15,
       });
 
       const map = mapInitialization();
-
-      // Update map center when query string changes
-      const queryStringLat = searchParams?.get('lat');
-      const queryStringLng = searchParams?.get('lng');
-
-      if (queryStringLat && queryStringLng) {
-        const position = new naver.maps.LatLng(+queryStringLat, +queryStringLng);
-        map.setCenter(position);
-      }
 
       mapRef.current = map;
 
