@@ -38,7 +38,7 @@ function Button({
   return (
     <button
       type="button"
-      className="w-full flex-none bg-blue-500 hover:bg-blue-600 rounded-lg py-2 px-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed min-h-[38px] min-w-[80px] text-white"
+      className="w-full flex-none bg-blue-500 hover:bg-blue-600 rounded-lg py-1.5 px-4 text-md font-semibold disabled:opacity-50 disabled:cursor-not-allowed min-h-[38px] min-w-[80px] text-white"
       {...props}
       disabled={!disabled}
     >

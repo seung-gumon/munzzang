@@ -1,45 +1,35 @@
-import { MdOutlinePlace } from 'react-icons/md';
-import { IoMdCopy } from 'react-icons/io';
-import { AiOutlinePhone } from 'react-icons/ai';
-import { IoStorefrontOutline } from 'react-icons/io5';
+import { AiFillPhone } from 'react-icons/all';
 
 function PlaceInfo() {
   return (
-    <section className="w-full flex flex-col">
-      <p className="py-1.5 border-t-[1px] border-gray-300 flex items-center">
-        <MdOutlinePlace className="inline-block mr-1.5 min-w-[20px]" />
-        <span className="flex items-center">
-          강북구 수유동 223-21
-          <button type="button" className="ml-1">
-            <IoMdCopy />
-          </button>
-        </span>
-      </p>
-      <p className="py-1.5 border-t-[1px] border-gray-300 flex items-center">
-        <AiOutlinePhone className="inline-block mr-1.5 min-w-[20px]" />
-        <span className="flex items-center">
-          010-7668-7912
-          <button type="button" className="ml-1">
-            <IoMdCopy />
-          </button>
-        </span>
-      </p>
-      <p className="py-1.5 border-t-[1px] border-gray-300 flex items-center">
-        <AiOutlinePhone className="inline-block mr-1.5 min-w-[20px]" />
-        <span className="flex items-center">
-          010-7668-7912
-          <button type="button" className="ml-1">
-            <IoMdCopy />
-          </button>
-        </span>
-      </p>
-      <p className="py-1.5 border-t-[1px] border-b-[1px] border-gray-300 last:border-b-1 flex items-center">
-        <IoStorefrontOutline className="inline-block mr-1.5 min-w-[20px] self-start mt-1" />
-        <span className="flex items-center">
-          주말, 연휴 및 특히 비오는 날이면 재료가 금새 소진되어주말, 연휴 및 특히 비오는 날이면 재료가 금새 소진되어주말, 연휴 및 특히 비오는 날이면 재료가 금새 소진되어
-        </span>
-      </p>
-    </section>
+    <div className="mx-auto flex items-center justify-center flex-col w-full max-w-2xl bg-white shadow-xl rounded-lg text-gray-900 md:px-0 px-4">
+      <div className="rounded-t-lg h-32 overflow-hidden bg-primary-clear w-full shadow-inner" />
+
+      <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+        <img className="object-cover object-center h-32" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="Woman looking front" />
+      </div>
+      <div className="text-center mt-2">
+        <h2 className="font-semibold">행복 유치원</h2>
+        <p className="text-gray-500">개쩌는 유치원</p>
+      </div>
+      <ul className="flex w-full items-center mt-4">
+        <li className="flex flex-col items-center flex-auto w-full">
+          <AiFillPhone />
+          <p>010-7668-7912</p>
+        </li>
+        <li className="flex flex-col items-center flex-auto w-full">
+          <AiFillPhone />
+          <p>굿</p>
+        </li>
+        <li className="flex flex-col items-center flex-auto w-full">
+          <AiFillPhone />
+          <p>이ㅏ아아앙주ㅜ우굿</p>
+        </li>
+      </ul>
+      <div className="p-4 border-t mx-8 mt-2">
+        <button type="button" className="block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
+      </div>
+    </div>
 
   );
 }
