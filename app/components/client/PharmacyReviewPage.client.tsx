@@ -10,22 +10,20 @@ import { useQuery } from '@tanstack/react-query';
 function PharmacyReviewPageClient() {
   const params = useParams();
 
-  if (!params) return null;
-
   const { data: pharmacyInfo } = useQuery({
-    queryKey: ['hospital', ''],
+    queryKey: ['pharmacy', params.id],
     queryFn: () => getPharmacyFindOneById(params.id as string),
   });
 
   const { data: medicalReview } = useQuery({
-    queryKey: ['hospital', params.id],
+    queryKey: ['review', params.id],
     queryFn: () => getReviewFindById(params.id as string),
   });
 
   return (
     <div className="flex flex-col gap-y-3">
       <WriteReview />
-      <PlaceHeader />
+      {/* <PlaceHeader /> */}
       <PlaceInfo />
     </div>
   );

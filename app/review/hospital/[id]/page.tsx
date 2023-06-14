@@ -12,8 +12,8 @@ async function HospitalPage({ params } : PageProps) {
   const queryClient = getQueryClient();
 
   await Promise.all([
-    await queryClient.prefetchQuery(['review', params.id], () => getReviewFindById(params.id)),
-    await queryClient.prefetchQuery(['hospital', params.id], () => getHospitalFindOneById(params.id)),
+    queryClient.prefetchQuery(['review', params.id], () => getReviewFindById(params.id)),
+    queryClient.prefetchQuery(['hospital', params.id], () => getHospitalFindOneById(params.id)),
   ]);
 
   const dehydratedState = dehydrate(queryClient);

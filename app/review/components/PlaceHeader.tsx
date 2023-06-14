@@ -2,25 +2,23 @@ import Link from 'next/link';
 
 function PlaceHeader() {
   return (
-    <section className="w-full">
-      <h3 className="text-xl font-bold text-center">승구몬 약국</h3>
-      <article className="text-black break-words break-all">
-        <section className="flex relative my-1.5 w-full gap-x-4 items-center justify-center">
-          <p className="font-semibold">
-            <span className="text-red-500 ">★</span>
-            {' '}
-            4.44/5
-          </p>
-          <Link href="/" className="text-blue-500 font-semibold">
-            방문자리뷰 1,035
-          </Link>
-          <Link href="/" className="text-blue-500 font-semibold">
-            영수증리뷰 353
-          </Link>
-        </section>
-        <p className="text-center">마약빼고 없는 약이 없다 ~ 김까미 화이팅</p>
-      </article>
-    </section>
+    <div className="grid grid-cols-8 bg-primary-clear p-4 m-3 rounded-lg text-primary-visible">
+      <div className="col-span-2">
+        <h3 className="text-xxs font-light">영수증 등록수</h3>
+        <span className="text-lg font-semibold">5,398</span>
+      </div>
+      <div className="divider divider-horizontal before:bg-primary-dull after:bg-primary-dull" />
+      <div className="col-span-2">
+        <h3 className="text-xxs font-light" />
+        <span className="text-lg">182</span>
+      </div>
+      <div className="divider divider-horizontal before:bg-primary-dull after:bg-primary-dull" />
+      <div className="col-span-2">
+        <h3 className="text-xxs font-light">Friends</h3>
+        <span className="text-lg">7</span>
+      </div>
+    </div>
+
   );
 }
 export default PlaceHeader;

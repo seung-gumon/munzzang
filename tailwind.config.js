@@ -10,15 +10,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary : {
-          100 : '#FFC107',
-          200 : '#DDA400',
-          300 : '#916400',
-        },
-        accent : {
-          100 : '#FFA000',
-          200 : '#8f4500',
-        },
+        bg: '#F7F7F7',
+        'bg-focus': '#ededed',
+        'primary-clear': '#FFD700',
+        'primary-dull': '#ddb900',
+        'primary-visible': '#917800',
+        'accent-clear': '#C0C0C0',
+        'accent-dull': '#626262',
+        clear: '#333333',
+        dull: '#5c5c5c',
+        duller: '#c4c4c4',
       }
     },
   },

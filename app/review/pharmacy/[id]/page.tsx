@@ -2,7 +2,7 @@ import getQueryClient from '@/app/libs/getQueryClient';
 import { dehydrate } from '@tanstack/react-query';
 import { getPharmacyFindOneById, getReviewFindById } from '@/app/queryFns/listQueryFns';
 import ReactQueryHydrate from '@/app/components/client/ReactQueryHydrate';
-import HospitalReviewPageClient from '@/app/components/client/HospitalReviewPage.client';
+import PharmacyReviewPageClient from '@/app/components/client/PharmacyReviewPage.client';
 
 interface PageProps {
   params: { id: string };
@@ -20,7 +20,7 @@ async function PharmacyPage({ params } : PageProps) {
 
   return (
     <ReactQueryHydrate state={dehydratedState}>
-      <HospitalReviewPageClient />
+      <PharmacyReviewPageClient />
     </ReactQueryHydrate>
   );
 }

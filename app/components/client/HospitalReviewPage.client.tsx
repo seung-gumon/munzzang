@@ -1,6 +1,6 @@
 'use client';
 
-import { getReviewFindById } from '@/app/queryFns/listQueryFns';
+import { getReviewFindById, getHospitalFindOneById } from '@/app/queryFns/listQueryFns';
 import WriteReview from '@/app/review/components/WriteReview';
 import PlaceHeader from '@/app/review/components/PlaceHeader';
 import PlaceInfo from '@/app/review/components/PlaceInfo';
@@ -12,9 +12,16 @@ function HospitalReviewPageClient() {
 
   if (!params) return null;
 
-  const { data: medicalInfo } = useQuery({
-    queryKey: ['hospital', ''],
+  const { data: hospitalInfo } = useQuery({
+    queryKey: ['hospital', params.id as string],
+    queryFn: () => getHospitalFindOneById(params.id as string),
+    // enabled: mounted,
+  });
+
+  const { data: reviewInfo } = useQuery({
+    queryKey: ['review', params.id],
     queryFn: () => getReviewFindById(params.id as string),
+    // enabled: mounted,
   });
 
   return (
