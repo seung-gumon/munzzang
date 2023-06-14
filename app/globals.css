@@ -20,19 +20,3 @@ body,
 .bg-symbol-yellow {
     background-color: #FFC107;
 }
-
-
-@layer utilities {
-    .container-inner-shadow {
-        @apply col-span-2;
-        @apply mt-4;
-        @apply flex;
-        @apply items-center;
-        @apply justify-center;
-        @apply rounded-lg;
-        @apply bg-bg-focus;
-        @apply p-6;
-        @apply shadow-inner;
-        @apply dark:bg-dbg-focus;
-    }
-}
