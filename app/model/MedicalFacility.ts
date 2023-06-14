@@ -30,10 +30,5 @@ export type MedicalFacility = {
   /**
    * 병원의 경도 좌표입니다.
    */
-  'lng': number,
-  'telNo' : string,
-  zipCode : string,
-  createTime : Date,
-  updateTime : Date,
-
+  'lng': number
 };

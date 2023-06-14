@@ -5,6 +5,8 @@ import MainPageClient from '@/app/components/client/MainPage.client';
 
 async function Page() {
   const queryClient = getQueryClient();
+  // await queryClient.prefetchQuery(['hospital'], getListQueryHospital);
+  // await queryClient.prefetchQuery(['pharmacy'], getListQueryPharmacy);
   const dehydratedState = dehydrate(queryClient);
 
   return (

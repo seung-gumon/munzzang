@@ -2,19 +2,14 @@ import { MdOutlinePlace } from 'react-icons/md';
 import { IoMdCopy } from 'react-icons/io';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { IoStorefrontOutline } from 'react-icons/io5';
-import { MedicalFacility } from '@/app/model/MedicalFacility';
 
-interface PlaceInfoProps {
-  medicalInformation?: MedicalFacility
-}
-
-function PlaceInfo({ medicalInformation }: PlaceInfoProps) {
+function PlaceInfo() {
   return (
     <section className="w-full flex flex-col">
       <p className="py-1.5 border-t-[1px] border-gray-300 flex items-center">
         <MdOutlinePlace className="inline-block mr-1.5 min-w-[20px]" />
         <span className="flex items-center">
-          {medicalInformation?.telNo}
+          강북구 수유동 223-21
           <button type="button" className="ml-1">
             <IoMdCopy />
           </button>
