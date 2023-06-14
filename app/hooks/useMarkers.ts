@@ -74,7 +74,7 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
           const city = response.v2.results[1].region.area2.name.split(' ')[0];
           setFocusedCity(city);
         });
-      }, 950); // 950ms delay
+      }, 550); // 550ms delay
 
       naver.maps.Event.addListener(mapRef.current, 'idle', debouncedHandleIdle);
 
