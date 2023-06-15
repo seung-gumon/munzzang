@@ -1,8 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { FcGoogle } from 'React-icons/fc';
-import { RiKakaoTalkFill } from 'react-icons/ri';
+import { RiKakaoTalkFill, RiGoogleFill } from 'react-icons/ri';
 import { useCallback, useState } from 'react';
 import {
   FieldValues,
@@ -67,7 +66,7 @@ function LoginModal() {
         disabled={!isValid}
         outline
         label="구글 로그인"
-        icon={FcGoogle}
+        icon={RiGoogleFill}
         onClick={() => signIn('google')}
       />
     </form>

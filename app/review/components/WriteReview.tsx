@@ -6,7 +6,7 @@ function WriteReview() {
   const htmlFor = useId();
 
   const uploadFile = (e : ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.files[0]);
+    console.log(e.target.files);
   };
 
   return (

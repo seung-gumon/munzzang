@@ -9,6 +9,8 @@ import { useQuery } from '@tanstack/react-query';
 function PharmacyReviewPageClient() {
   const params = useParams();
 
+  if (!params) return null;
+
   const { data: pharmacyInfo } = useQuery({
     queryKey: ['pharmacy', params.id],
     queryFn: () => getPharmacyFindOneById(params.id as string),
