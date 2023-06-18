@@ -15,7 +15,8 @@
     "react/require-default-props" : "off",
     "no-param-reassign" : "off",
     "no-new" : "off",
-    "consistent-return" : "off"
+    "consistent-return" : "off",
+    "import/prefer-default-export" : "off"
   }
 }
 

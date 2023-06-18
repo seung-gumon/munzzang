@@ -1,11 +1,8 @@
 import { MedicalFacility } from '@/app/model/MedicalFacility';
 import { usePathname } from 'next/navigation';
-import { useMemo, memo } from 'react';
-import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
-import { addCommas } from '@/app/libs/addCommas';
+import { useMemo } from 'react';
 import RatingComponent from '@/app/review/components/Rating';
 import Tabs from '@/app/review/components/Tabs';
-import Button from '@/app/components/Button';
 
 interface PlaceInfoProps {
   placeInfo?: MedicalFacility
@@ -39,17 +36,13 @@ function PlaceInfo({ placeInfo, reviewInfo }: PlaceInfoProps) {
           <h5 className="text-sm">
             &nbsp; / &nbsp;
             리뷰 수 : &nbsp;
-            <span className="font-semibold">{addCommas(reviewCount)}</span>
+            <span className="font-semibold">{reviewCount.toLocaleString()}</span>
           </h5>
         </article>
       </article>
       <article className="w-full flex flex-col justify-center items-center">
         <Tabs />
       </article>
-      <div className="absolute bottom-10 w-11/12">
-        <Button loading={false} value="나도 참여하기" />
-      </div>
-
     </section>
 
   );

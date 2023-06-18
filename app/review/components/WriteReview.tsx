@@ -1,14 +1,6 @@
-import { useId, ChangeEvent } from 'react';
 import { FiUser } from 'react-icons/fi';
-import { IoReceiptOutline } from 'react-icons/io5';
 
 function WriteReview() {
-  const htmlFor = useId();
-
-  const uploadFile = (e : ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-  };
-
   return (
     <div className="mt-8 flex flex-col md:flex-row w-full p-4 justify-center items-center gap-x-3.5">
       <section className="flex w-full md:w-auto mb-3 md:mb-0">
@@ -39,26 +31,6 @@ function WriteReview() {
             <span className="text-lg font-semibold">7</span>
           </div>
         </article>
-
-        {/*  Native */}
-        {/* <label */}
-        {/*  htmlFor={htmlFor} */}
-        {/*  className="cursor-pointer bg-primary-visible text-white py-2.5 rounded-md items-center justify-center font-medium mt-3" */}
-        {/* > */}
-        {/*  <p className="font-semibold flex items-center justify-center"> */}
-        {/*    <span>영수증 업로드</span> */}
-        {/*    <IoReceiptOutline className="ml-0.5 pt-0.5" /> */}
-        {/*  </p> */}
-        {/*  <input */}
-        {/*    id={htmlFor} */}
-        {/*    type="file" */}
-        {/*    multiple={false} */}
-        {/*    className="hidden" */}
-        {/*    accept={'image/*'} */}
-        {/*    onChange={uploadFile} */}
-        {/*  /> */}
-        {/* </label> */}
-        {/*  Native */}
       </section>
     </div>
   );
