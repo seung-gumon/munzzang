@@ -31,9 +31,26 @@ export type MedicalFacility = {
    * 병원의 경도 좌표입니다.
    */
   'lng': number,
-
-  'telNo' : string,
+  /**
+   * 병원의 전화번호 입니다.
+   */
+  'telNo' : string | null,
+  /**
+   * 병원의 우편번호 입니다.
+   */
   zipCode : string,
+  /**
+   * 병원의 별점 점수 입니다.
+   */
+  rate : null | number,
+  /**
+   * 리뷰 총 개수
+   */
+  reviewCount : null | number,
+  /**
+   * 리뷰의 상태 입니다.
+   */
+  status : string
   createTime : Date,
   updateTime : Date,
 };

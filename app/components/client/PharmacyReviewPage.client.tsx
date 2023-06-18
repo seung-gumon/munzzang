@@ -21,11 +21,17 @@ function PharmacyReviewPageClient() {
     queryFn: () => getReviewFindById(params.id as string),
   });
 
+  console.log('medicalReview', medicalReview?.data);
+  console.log('%c pharmacyInfo?.data.Items[0]', `color: ${'#FF0000'}`, pharmacyInfo?.data.Items[0]);
+
   return (
     <div className="flex flex-col gap-y-3">
       <WriteReview />
       {/* <PlaceHeader /> */}
-      <PlaceInfo />
+      <PlaceInfo
+        placeInfo={pharmacyInfo?.data.Items[0]}
+        reviewInfo={medicalReview?.data.Items}
+      />
     </div>
   );
 }

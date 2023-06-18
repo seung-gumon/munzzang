@@ -1,36 +1,58 @@
-import { AiFillPhone } from 'react-icons/all';
+import { MedicalFacility } from '@/app/model/MedicalFacility';
+import { usePathname } from 'next/navigation';
+import { useMemo, memo } from 'react';
+import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
+import { addCommas } from '@/app/libs/addCommas';
+import RatingComponent from '@/app/review/components/Rating';
+import Tabs from '@/app/review/components/Tabs';
+import Button from '@/app/components/Button';
 
-function PlaceInfo() {
+interface PlaceInfoProps {
+  placeInfo?: MedicalFacility
+  reviewInfo?: any;
+}
+
+function PlaceInfo({ placeInfo, reviewInfo }: PlaceInfoProps) {
+  const pathName = usePathname();
+
+  const bigCategory = useMemo(() => {
+    if (pathName?.includes('pharmacy')) {
+      return '동물 약국';
+    }
+    return '동물 병원';
+  }, []);
+
+  const rate = useMemo(() => (placeInfo?.rate || 0), [placeInfo?.rate]);
+  const reviewCount = useMemo(() => (placeInfo?.reviewCount || 0), []);
+
   return (
-    <div className="mx-auto flex items-center justify-center flex-col w-full max-w-2xl bg-white shadow-xl rounded-lg text-gray-900 md:px-0 px-4">
-      <div className="rounded-t-lg h-32 overflow-hidden bg-primary-clear w-full shadow-inner" />
+    <section
+      className="mx-auto flex items-center justify-center flex-col w-full max-w-2xl bg-white  rounded-lg text-gray-900 md:px-0 px-4"
+    >
+      <article className="flex flex-col">
+        <article className="flex items-center justify-center">
+          <h4 className="text-2xl font-semibold ">{placeInfo?.bizPlcNm}</h4>
+          <h5 className="text-sm ml-3 self-end">{bigCategory}</h5>
+        </article>
+        <article className="flex items-center justify-center mt-1.5">
+          <RatingComponent rate={rate} />
+          <h5 className="text-sm">
+            &nbsp; / &nbsp;
+            리뷰 수 : &nbsp;
+            <span className="font-semibold">{addCommas(reviewCount)}</span>
+          </h5>
+        </article>
+      </article>
+      <article className="w-full flex flex-col justify-center items-center">
+        <Tabs />
+      </article>
+      <div className="absolute bottom-10 w-11/12">
+        <Button loading={false} value="나도 참여하기" />
+      </div>
 
-      <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-        <img className="object-cover object-center h-32" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="Woman looking front" />
-      </div>
-      <div className="text-center mt-2">
-        <h2 className="font-semibold">행복 유치원</h2>
-        <p className="text-gray-500">개쩌는 유치원</p>
-      </div>
-      <ul className="flex w-full items-center mt-4">
-        <li className="flex flex-col items-center flex-auto w-full">
-          <AiFillPhone />
-          <p>010-7668-7912</p>
-        </li>
-        <li className="flex flex-col items-center flex-auto w-full">
-          <AiFillPhone />
-          <p>굿</p>
-        </li>
-        <li className="flex flex-col items-center flex-auto w-full">
-          <AiFillPhone />
-          <p>이ㅏ아아앙주ㅜ우굿</p>
-        </li>
-      </ul>
-      <div className="p-4 border-t mx-8 mt-2">
-        <button type="button" className="block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
-      </div>
-    </div>
+    </section>
 
   );
 }
+
 export default PlaceInfo;

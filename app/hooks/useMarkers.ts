@@ -1,5 +1,5 @@
 import {
-  useEffect, useRef, RefObject, useCallback, useState,
+  useEffect, useRef, RefObject, useState,
 } from 'react';
 import { type Location } from '@/app/model/Location';
 import { useQuery } from '@tanstack/react-query';
@@ -7,8 +7,6 @@ import { getListQueryHospital, getListQueryPharmacy } from '@/app/queryFns/listQ
 import { useRouter } from 'next/navigation';
 import { debounce } from 'lodash';
 import { MedicalFacility } from '@/app/model/MedicalFacility';
-
-// import hello from '../../public/images/hospital.png'
 
 interface MapRef {
   map: naver.maps.Map;
@@ -74,7 +72,7 @@ function useMarkers(mapRef: RefObject<naver.maps.Map>, myLocation: Location | nu
           const city = response.v2.results[1].region.area2.name.split(' ')[0];
           setFocusedCity(city);
         });
-      }, 100000); // 950ms delay
+      }, 1000); // 950ms delay
 
       naver.maps.Event.addListener(mapRef.current, 'idle', debouncedHandleIdle);
 

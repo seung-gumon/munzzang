@@ -65,7 +65,7 @@ export default async function RootLayout({
         <ClientOnly>
           <ReactQueryProvider>
             <ToasterProvider />
-            <div className="max-w-[1400px] w-full h-full mx-auto">
+            <div className="max-w-[1400px] w-full h-full mx-auto relative">
               {children}
             </div>
           </ReactQueryProvider>

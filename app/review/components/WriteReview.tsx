@@ -41,23 +41,23 @@ function WriteReview() {
         </article>
 
         {/*  Native */}
-        <label
-          htmlFor={htmlFor}
-          className="cursor-pointer bg-primary-visible text-white py-2.5 rounded-md items-center justify-center font-medium mt-3"
-        >
-          <p className="font-semibold flex items-center justify-center">
-            <span>영수증 업로드</span>
-            <IoReceiptOutline className="ml-0.5 pt-0.5" />
-          </p>
-          <input
-            id={htmlFor}
-            type="file"
-            multiple={false}
-            className="hidden"
-            accept={'image/*'}
-            onChange={uploadFile}
-          />
-        </label>
+        {/* <label */}
+        {/*  htmlFor={htmlFor} */}
+        {/*  className="cursor-pointer bg-primary-visible text-white py-2.5 rounded-md items-center justify-center font-medium mt-3" */}
+        {/* > */}
+        {/*  <p className="font-semibold flex items-center justify-center"> */}
+        {/*    <span>영수증 업로드</span> */}
+        {/*    <IoReceiptOutline className="ml-0.5 pt-0.5" /> */}
+        {/*  </p> */}
+        {/*  <input */}
+        {/*    id={htmlFor} */}
+        {/*    type="file" */}
+        {/*    multiple={false} */}
+        {/*    className="hidden" */}
+        {/*    accept={'image/*'} */}
+        {/*    onChange={uploadFile} */}
+        {/*  /> */}
+        {/* </label> */}
         {/*  Native */}
       </section>
     </div>
