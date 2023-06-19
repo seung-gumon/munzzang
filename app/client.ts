@@ -41,11 +41,23 @@ export const fetchClient = {
       };
     } catch (exception: unknown) {
       if (exception instanceof Error) {
-        console.log('GET 에러 났음', exception.message);
         throw exception;
       } else {
         throw new Error('An unknown error occurred during fetch');
       }
     }
+  },
+  async post<T>(url: string, body?: any, config: RequestConfig = {}) {
+    const response = await fetch(`${this.baseUrl}/${this.env}/${url}`, {
+      method: 'POST',
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    await rejectIfNeeded(response);
+    const data: T = await response.json();
+    const { headers } = response;
+    return {
+      data,
+      headers,
+    };
   },
 };

@@ -14,6 +14,7 @@ const nextConfig = {
         domains: [
             'lh3.googleusercontent.com',
             "k.kakaocdn.net",
+            "https://petnmat-dev.s3.ap-northeast-2.amazonaws.com"
         ],
     },
 }

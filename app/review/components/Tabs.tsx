@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tab } from '@headlessui/react';
+import { reviewList } from '@/app/util/constant';
 
 type Categories = {
   '후기 보기': Array<{ id: number; title: string; reviewCount: number; }>;
@@ -15,28 +16,7 @@ function classNames(...classes : string[]) {
 
 export default function Tabs() {
   const [categories] = useState<Categories>({
-    '후기 보기': [
-      {
-        id: 1,
-        title: '🐶 제 2의 강혁욱이 여기 있어요',
-        reviewCount: 30,
-      },
-      {
-        id: 2,
-        title: ' 👨🏻‍⚕️ 선생님이 친절해요',
-        reviewCount: 13,
-      },
-      {
-        id: 3,
-        title: '🙅🏻 과잉진료 없어요',
-        reviewCount: 555555,
-      },
-      {
-        id: 4,
-        title: '🧹 매장이 청결해요',
-        reviewCount: 3,
-      },
-    ],
+    '후기 보기': reviewList,
     '진료비 정보 보기': [
       {
         id: 1,

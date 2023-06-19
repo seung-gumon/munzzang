@@ -23,9 +23,6 @@ function PharmacyReviewPageClient() {
     queryFn: () => getReviewFindById(params.id as string),
   });
 
-  console.log('medicalReview', medicalReview?.data);
-  console.log('%c pharmacyInfo?.data.Items[0]', `color: ${'#FF0000'}`, pharmacyInfo?.data.Items[0]);
-
   const goToUploadPage = () => {
     router.push(`/review/upload/${params.id}`);
   };
