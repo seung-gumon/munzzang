@@ -24,7 +24,7 @@ function PlaceInfo({ placeInfo, reviewInfo }: PlaceInfoProps) {
 
   return (
     <section
-      className="mx-auto flex items-center justify-center flex-col w-full max-w-2xl bg-white  rounded-lg text-gray-900 md:px-0 px-4"
+      className="mx-auto flex items-center justify-center flex-col w-full max-w-2xl bg-white  rounded-lg text-gray-900 md:px-0 px-4  mt-8"
     >
       <article className="flex flex-col">
         <article className="flex items-center justify-center">

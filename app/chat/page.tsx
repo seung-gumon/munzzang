@@ -79,7 +79,7 @@ const ChatRoom: React.FC = () => {
         <Link href="/" className="ml-2.5 cursor-pointer">
           <HiOutlineArrowLeft size={24} />
         </Link>
-        <h1 className="flex-1 text-center text-2xl font-bold mr-[24px]">채팅방 제목</h1>
+        <h1 className="flex-1 text-center text-2xl font-bold mr-[24px]">메트 집사🤵‍♂️</h1>
       </div>
 
       <section

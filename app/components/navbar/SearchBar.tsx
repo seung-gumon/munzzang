@@ -51,26 +51,26 @@ function SearchBar() {
       <div className="flex flex-col w-[90%] relative">
 
         <Input label="searchTerm" register={register} type="search" />
-        <button type="submit" className="absolute right-0 z-30 bg-symbol-yellow text-white rounded-md p-2 shadow-sm" style={{ top: '3%', right: '0.8%' }}>
+        <button type="submit" className="absolute right-0 z-30 bg-symbol-yellow text-white rounded-md p-2 shadow-sm" style={{ top: '6%', right: '0.8%' }}>
           <AiOutlineSearch size={24} />
         </button>
         <section className="flex justify-start items-center w-full pl-0.5 mt-2.5 gap-x-5">
-          {
-            filters.map((btn) => (
-              <button
-                key={btn.buttonText}
-                type="button"
-                value={btn.value}
-                onClick={(e) => console.log(e.currentTarget.value)}
-                className="bg-white shadow-md py-2 px-3 rounded-full hover:scale-110 transition"
-              >
-                <p className="flex items-center">
-                  {btn.icon}
-                  <span className="ml-1">{btn.buttonText}</span>
-                </p>
-              </button>
-            ))
-          }
+          {/* { */}
+          {/*  filters.map((btn) => ( */}
+          {/*    <button */}
+          {/*      key={btn.buttonText} */}
+          {/*      type="button" */}
+          {/*      value={btn.value} */}
+          {/*      onClick={(e) => console.log(e.currentTarget.value)} */}
+          {/*      className="bg-white shadow-md py-2 px-3 rounded-full hover:scale-110 transition" */}
+          {/*    > */}
+          {/*      <p className="flex items-center"> */}
+          {/*        {btn.icon} */}
+          {/*        <span className="ml-1">{btn.buttonText}</span> */}
+          {/*      </p> */}
+          {/*    </button> */}
+          {/*  )) */}
+          {/* } */}
 
         </section>
       </div>

@@ -32,13 +32,13 @@ function PharmacyReviewPageClient() {
 
   return (
     <div className="flex flex-col gap-y-3">
-      <WriteReview />
+      {/* <WriteReview /> */}
       {/* <PlaceHeader /> */}
       <PlaceInfo
         placeInfo={pharmacyInfo?.data.Items[0]}
         reviewInfo={medicalReview?.data.Items}
       />
-      <div className="absolute bottom-4 w-11/12 left-1/2 translate-x-[-50%]">
+      <div className="absolute bottom-8 w-11/12 left-1/2 translate-x-[-50%]">
         <Button loading={false} value="나도 참여하기" onClick={goToUploadPage} />
       </div>
     </div>

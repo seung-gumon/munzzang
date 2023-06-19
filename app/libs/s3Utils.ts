@@ -16,14 +16,15 @@ export const uploadImageToS3 = async (file: File): Promise<string> => {
 
   // Generate a unique file name (you can modify this as needed)
   const fileName = `image_${Date.now()}_${name}`;
+  console.log('fileName ::: ', fileName);
 
   // Configure the S3 parameters
   const params: AWS.S3.PutObjectRequest = {
     Bucket: 'petnmat-dev',
     Key: fileName,
     Body: file,
-    ContentType: type,
-    ACL: 'public-read', // Set the appropriate ACL permissions
+    // ContentType: type,
+    // ACL: 'public-read', // Set the appropriate ACL permissions
   };
 
   try {

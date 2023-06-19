@@ -18,22 +18,22 @@ export default function Tabs() {
     '후기 보기': [
       {
         id: 1,
-        title: '강혁욱이 여기 있어요 🐶',
+        title: '🐶 제 2의 강혁욱이 여기 있어요',
         reviewCount: 30,
       },
       {
         id: 2,
-        title: '선생님이 친절해요 👨🏻‍⚕️',
+        title: ' 👨🏻‍⚕️ 선생님이 친절해요',
         reviewCount: 13,
       },
       {
         id: 3,
-        title: '과잉진료 없어요 🙅🏻',
+        title: '🙅🏻 과잉진료 없어요',
         reviewCount: 555555,
       },
       {
         id: 4,
-        title: '매장이 청결해요 🧹',
+        title: '🧹 매장이 청결해요',
         reviewCount: 3,
       },
     ],
@@ -82,8 +82,8 @@ export default function Tabs() {
   });
 
   const categoryClass = (post: Post) => ('title' in post
-    ? 'flex flex-col gap-y-1.5 mt-2 max-h-[40vh] overflow-auto'
-    : 'grid grid-cols-3 mt-2 gap-2.5 text-white text-sm text-center font-bold leading-6 h-[40vh] rounded-lg overflow-auto');
+    ? 'flex flex-col gap-y-2 mt-2 max-h-[calc(100vh-20rem)] overflow-auto'
+    : 'grid grid-cols-3 mt-2 gap-2 text-white text-sm text-center font-bold leading-6 h-[calc(100vh-20rem)] rounded-lg overflow-auto');
 
   return (
     <div className="w-full px-2 py-8 sm:px-0">
@@ -117,7 +117,7 @@ export default function Tabs() {
                     <img src={post.img} alt="" className="w-full h-full object-cover rounded-lg" />
                   </li>
                 ) : (
-                  <li key={post.id} className="relative rounded-md p-3 bg-primary-clear/[0.8]">
+                  <li key={post.id} className="relative rounded-md p-3 bg-primary-clear/[0.3]">
                     <h3 className="text-sm font-medium leading-5">
                       {post.title}
                       <span className="ml-1">
