@@ -52,7 +52,7 @@ function LoginModal() {
   const bodyContent = (
     <form className="flex flex-col gap-4">
       <Heading
-        title="문짱에 오신 것을 환영합니다."
+        title="팻츠와매트에 오신 것을 환영합니다."
       />
 
       <Button

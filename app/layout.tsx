@@ -6,6 +6,7 @@ import ToasterProvider from '@/app/providers/ToasterProvider';
 import Script from 'next/script';
 import ClientOnly from '@/app/components/ClientOnly';
 import ReactQueryProvider from '@/app/providers/ReactQueryProvider';
+import LoginModal from '@/app/components/modals/LoginModal';
 
 export const metadata : Metadata = {
   title: 'Pets And Mats',
@@ -66,6 +67,7 @@ export default async function RootLayout({
           <ReactQueryProvider>
             <ToasterProvider />
             <div className="max-w-[1400px] w-full h-full mx-auto relative">
+              <LoginModal />
               {children}
             </div>
           </ReactQueryProvider>

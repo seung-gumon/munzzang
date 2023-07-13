@@ -52,6 +52,9 @@ export const fetchClient = {
       method: 'POST',
       body: body ? JSON.stringify(body) : undefined,
     });
+
+    console.log('Post Response :::', response);
+
     await rejectIfNeeded(response);
     const data: T = await response.json();
     const { headers } = response;
