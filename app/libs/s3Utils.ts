@@ -15,7 +15,7 @@ export const uploadImageToS3 = async (file: File): Promise<string> => {
   const { name, type } = file;
 
   // Generate a unique file name (you can modify this as needed)
-  const fileName = `image_${Date.now()}_${name}`;
+  const fileName = `${name}`;
   console.log('fileName ::: ', fileName);
 
   // Configure the S3 parameters
@@ -30,10 +30,9 @@ export const uploadImageToS3 = async (file: File): Promise<string> => {
   try {
     // Upload the image to S3
     const response = await s3.upload(params).promise();
-    console.log('response :::', response);
+    console.log('%c Upload File Image :::', response);
     return response.Location!; // Return the uploaded file URL
   } catch (error) {
-    console.error(error);
     throw new Error('Failed to upload image');
   }
 };

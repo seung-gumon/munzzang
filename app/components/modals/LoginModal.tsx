@@ -72,37 +72,6 @@ function LoginModal() {
     </form>
   );
 
-  const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
-      <hr />
-      <div
-        className="
-          text-neutral-500
-          text-center
-          mt-4
-          font-light
-        "
-      >
-        <p>
-          계정이 없으신가요 ?
-          <button
-            type="button"
-            onClick={onToggle}
-            className="
-              text-neutral-800
-              cursor-pointer
-              font-semibold
-              hover:underline
-              ml-1
-            "
-          >
-            회원가입
-          </button>
-        </p>
-      </div>
-    </div>
-  );
-
   return (
     <Modal
       disabled={isLoading}
@@ -112,7 +81,7 @@ function LoginModal() {
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
-      footer={footerContent}
+      // footer={footerContent}
     />
   );
 }

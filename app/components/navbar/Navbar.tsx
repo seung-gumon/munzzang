@@ -11,7 +11,7 @@ import { toast } from 'react-hot-toast';
 
 function Navbar() {
   const { data: session, status } = useSession();
-  const { logIn, logOut } = useLogin();
+  const { isLogin, logIn, logOut } = useLogin();
 
   const {
     data, error, isLoading, mutate: loginMutation,
@@ -27,7 +27,7 @@ function Navbar() {
   });
 
   useEffect(() => {
-    if (session?.user && session?.provider) {
+    if (session?.user && session?.provider && !isLogin) {
       const { user: { id, email }, provider } = session;
       loginMutation({
         id: String(id),
