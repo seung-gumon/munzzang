@@ -140,7 +140,7 @@ function ReceiptUpload() {
                       </article>
                       <Image src={receipt} width={80} height={80} alt="receipt" className="rounded-md" />
                     </section>
-                    <section className="max-w-lg mx-auto">
+                    <section className="max-w-lg flex items-center justify-center">
                       <Table>
                         <Table.Head>
                           <Table.Row values={['진단명', '단가', '수량', '금액']} />
@@ -181,7 +181,7 @@ function ReceiptUpload() {
                       placeholder="진짜 존맛탱~"
                     />
 
-                    <h3 className="font-semibold text-sm my-1.5">어떤점이 좋았나요 ?</h3>
+                    <h3 className="font-semibold text-sm mt-8">어떤점이 좋았나요 ?</h3>
                     <RenderReviews
                       reviews={reviewList}
                       selected={selectedReview}

@@ -34,7 +34,7 @@ Table.Row = function TableRow({ values }: TableRowProps) {
   return (
     <tr>
       {values.map((value, index) => (
-        <td key={`${value}${index}`} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td key={`${value}${index}`} className="text-center px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           {value}
         </td>
       ))}
